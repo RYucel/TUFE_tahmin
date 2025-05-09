@@ -6,3 +6,4 @@ pmdarima==2.0.3 # Yerelde çalışan versiyonu yazın
 prophet==1.0.1
 scikit-learn==1.2.0
 statsmodels==0.13.5
+Cython>=0.29.0  # Veya yerelinizde çalışan spesifik bir versiyon

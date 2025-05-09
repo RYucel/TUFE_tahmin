@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache/
+nosetests.xml
+coverage.xml
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Frontend (Node)
+frontend/node_modules/
+frontend/dist/
+frontend/.pnp
+frontend/.pnp.js
+frontend/coverage/
+frontend/.DS_Store
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/vite-env.d.ts # Genellikle Vite tarafından oluşturulur, commit etmeyebilirsiniz
+
+# IDE/Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,27 @@
+// frontend/tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false, // Typically false for TS projects
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler", // Or "node" if "bundler" causes issues
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": "./src", // Optional: for absolute paths from src
+    "paths": { // Optional: define aliases
+      "@components/*": ["components/*"],
+      "@types/*": ["types/*"],
+    }
+  },
+  "include": ["src", "vite.config.ts"], // Ensure vite.config.ts is included
+  "references": [{ "path": "./tsconfig.node.json" }] // Common in Vite setups
+}

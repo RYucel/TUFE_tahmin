@@ -1,0 +1,11 @@
+// frontend/tsconfig.node.json (Often used by Vite for vite.config.ts itself)
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler", // Or "NodeNext" or "Node"
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"]
+}

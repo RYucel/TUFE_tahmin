@@ -1,0 +1,8 @@
+Flask
+Flask-CORS
+pandas
+numpy
+statsmodels
+scikit-learn
+pmdarima
+prophet

@@ -1,8 +1,8 @@
-Flask
-Flask-CORS
-pandas
-numpy
-statsmodels
-scikit-learn
-pmdarima
-prophet
+Flask==2.2.2
+Flask-CORS==3.0.10
+numpy==1.23.5  # Yerelde çalışan versiyonu yazın
+pandas==1.5.2  # Yerelde çalışan versiyonu yazın
+pmdarima==2.0.3 # Yerelde çalışan versiyonu yazın
+prophet==1.1.1
+scikit-learn==1.2.0
+statsmodels==0.13.5

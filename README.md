@@ -179,6 +179,17 @@ ağırlık indirme ve akıl sağlığı kontrolü** → kayan başlangıçlı ge
 doğrulaması → seçim ve dondurma → nihai holdout → aralık kalibrasyonu →
 12 aylık tahmin → grafikler, Türkçe rapor ve çıktıların ZIP olarak indirilmesi.
 
+Defter `notebooks/_defter_uret.py` ile üretilir ve
+`notebooks/_defter_dogrula.py` ile doğrulanır (nbformat şeması, `source` satır
+sonu sözleşmesi, kod sözdizimi ve kurulum/Colab'e özgü olanlar dışındaki tüm
+hücrelerin gerçekten çalıştırılması — çıktılar `artifacts_dryrun/` altına
+yazılır, üretim `artifacts/` dizinine dokunulmaz):
+
+```bash
+python notebooks/_defter_dogrula.py --sadece-bicim   # hızlı biçim kontrolü
+python notebooks/_defter_dogrula.py                  # biçim + tam çalıştırma
+```
+
 Kullanım: *Çalışma zamanı → Türü değiştir → GPU*, sonra *Tümünü çalıştır*.
 `HIZLI_MOD = True` iken geliştirme doğrulaması son 48 başlangıçla koşar (~5 dk);
 tam çalıştırma için `False` yapın.

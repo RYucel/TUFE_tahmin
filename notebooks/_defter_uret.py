@@ -3,15 +3,26 @@ import json, pathlib
 
 cells = []
 
+def _lines(src: str) -> list[str]:
+    """Metni .ipynb `source` listesine çevirir.
+
+    nbformat sözleşmesi: liste elemanları AYIRAÇSIZ birleştirilir, bu yüzden
+    son satır dışında her satır kendi "\n" karakterini taşımalıdır. Aksi hâlde
+    hücre görüntüleyicide tek satıra yapışır.
+    """
+    text = src.strip("\n")
+    return [ln + "\n" for ln in text.split("\n")[:-1]] + [text.split("\n")[-1]]
+
+
 def md(src):
     cells.append({"cell_type": "markdown", "metadata": {},
-                  "source": src.strip("\n").split("\n")})
+                  "source": _lines(src)})
 
 def code(src, **meta):
     m = {"id": f"c{len(cells)}"}
     m.update(meta)
     cells.append({"cell_type": "code", "execution_count": None, "metadata": m,
-                  "outputs": [], "source": src.strip("\n").split("\n")})
+                  "outputs": [], "source": _lines(src)})
 
 # ---------------------------------------------------------------- 0. başlık
 md(r"""

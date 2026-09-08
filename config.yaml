@@ -1,0 +1,104 @@
+# KKTC TÜFE Tahmin Sistemi — merkezi yapılandırma
+# Bu dosyadaki seçim kuralları ve ağırlıklar SONUÇLAR GÖRÜLMEDEN tanımlanmıştır.
+
+project:
+  name: "KKTC TUFE Tahmin Sistemi"
+  seed: 20260908
+  locale: tr_TR
+
+data:
+  api_base: "https://kktc-tufe-api.stevevaius.workers.dev"
+  endpoints:
+    meta: "/api/v1/meta"
+    latest: "/api/v1/latest"
+    tufe: "/api/v1/tufe"
+    periods: "/api/v1/periods"
+    openapi: "/api/openapi.json"
+  # API'ye ulaşılamazsa (kurumsal egress politikası vb.) API'nin kendi
+  # beslendiği yukarı akış veri deposu kullanılır. Ayni verinin kaynagidir.
+  upstream_repo: "https://github.com/RYucel/kktc_tufe"
+  upstream_monthly_url: "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json"
+  upstream_items_url: "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv"
+  raw_dir: "data/raw"
+  cutoff: "2026-08"          # veri kesimi (dahil)
+  page_limit: 1000
+  timeout_sec: 60
+  # Doğrulama toleransları (yüzde puan)
+  tolerance:
+    rounding_pp: 0.02        # yuvarlama kaynaklı kabul edilebilir fark
+    material_pp: 0.25        # bunun üzeri "gerçek uyuşmazlık" sayılır
+  expected:                  # plan aşamasında doğrulanan başlangıç kontrolleri
+    n_monthly: 594
+    first: "1977-03"
+    last: "2026-08"
+    last_aylik: 3.0443
+    last_ytd: 24.0081
+    last_yillik: 37.6979
+    items_first: "2015-01"
+    items_last: "2026-08"
+    items_n_months: 140
+
+split:
+  dev_end: "2024-08"         # geliştirme doğrulamasında hedefler bu aya kadar tamamlanmış olmalı
+  holdout_start_origin: "2024-08"   # nihai testin ilk tahmin başlangıcı
+  holdout_end: "2026-08"     # nihai testte puanlanan son hedef ayı
+  dev_origin_start: "2015-01"
+  subperiods:
+    - {name: "2015-2020", start: "2015-01", end: "2020-12"}
+    - {name: "2021-2024/8", start: "2021-01", end: "2024-08"}
+
+horizon: 12
+
+targets:
+  yearend_origin_months: [6, 8, 10]   # Haziran/Ağustos/Ekim sonu başlangıçları
+  compound: [6, 12]
+
+selection:
+  # Sonuçlar görülmeden sabitlenmiş ağırlıklar
+  weights: {yearend: 0.60, c6: 0.30, c12: 0.10}
+  metric: "MAE"                # yüzde puan cinsinden
+  tie_relative_threshold: 0.02 # en iyi skora göre %2'den yakın adaylar berabere sayılır
+  # Beraberlik bozma sırası (önce basitlik, sonra hesaplama maliyeti)
+  tie_break: ["complexity_rank", "runtime_sec", "model"]
+  zero_score_epsilon: 1.0e-9   # sıfır/sıfıra yakın skor durumunun ele alınışı
+  min_common_origins: 12       # ortak başlangıç sayısı bunun altındaysa aday sıralamaya girmez
+  ensemble:
+    enabled: true
+    top_k: 3
+    distinct_families: true
+    scale: "log_monthly"       # birleşim aylık log değişim ölçeğinde yapılır
+    methods: ["mean", "median"]
+
+calibration:
+  method: "conformal_absolute" # hedef ölçeğinde mutlak hata kuantilleri
+  levels: [0.80, 0.95]
+  min_samples: {0.80: 10, 0.95: 20}
+  max_history: 60              # kalibrasyonda kullanılacak en fazla geçmiş hata sayısı
+  update: "expanding"
+
+backtest:
+  windows: [60, 120, 0]        # 0 = erişilebilir tüm geçmiş
+  transforms: ["log"]          # ana modelleme ölçeği; "pct" alternatifi geliştirmede denenir
+  mase:
+    # Ortak payda: her başlangıçta, o başlangıca kadar gerçekleşmiş hedeflerde
+    # mevsimsel-naive (12 ay) mutlak hatasının ortalaması. Tüm modeller için aynıdır.
+    reference: "seasonal_naive_12"
+    min_denominator_obs: 8
+
+bootstrap:
+  n_boot: 1000
+  block_size_months: 12
+
+report:
+  out_dir: "artifacts"
+  figures_dir: "artifacts/figures"
+  tables_dir: "artifacts/tables"
+  formats: ["png", "svg"]
+
+timesfm:
+  enabled: true
+  repo: "https://github.com/google-research/timesfm"
+  hf_model: "google/timesfm-3.0-pytorch"
+  pip_spec: "timesfm"
+  context_lengths: [512, 1024]
+  required: true   # zorunlu karşılaştırma bileşeni; çalıştırılamazsa açıkça raporlanır

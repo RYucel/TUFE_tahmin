@@ -45,3 +45,8 @@ frontend/vite-env.d.ts # Genellikle Vite tarafından oluşturulur, commit etmeye
 # OS generated files
 .DS_Store
 Thumbs.db
+# Proje: sanal ortam ve büyük ara çıktılar
+.venv/
+artifacts/*.parquet
+!artifacts/ham_gecmis_tahminler.parquet
+data/raw/*.parquet

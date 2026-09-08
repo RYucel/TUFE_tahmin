@@ -1,0 +1,1 @@
+"""KKTC TÜFE tahmin sistemi."""

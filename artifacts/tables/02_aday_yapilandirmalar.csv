@@ -1,0 +1,24 @@
+﻿aday,aile,pencere,donusum,basitlik_sirasi,yardimci_veri,min_gecmis_ay,notlar
+naive_son_ay,baseline,tüm geçmiş,log,0,hayır,13,{}
+naive_mevsimsel_12,baseline,tüm geçmiş,log,0,hayır,24,{}
+ortalama_3ay,baseline,tüm geçmiş,log,0,hayır,24,{}
+ortalama_6ay,baseline,tüm geçmiş,log,0,hayır,24,{}
+ortalama_12ay,baseline,tüm geçmiş,log,0,hayır,24,{}
+ETS_damped_seasonal_w60,ets,son 60 ay,log,2,hayır,48,{}
+AutoTheta_w60,theta,son 60 ay,log,2,hayır,48,{}
+ETS_damped_seasonal_w120,ets,son 120 ay,log,2,hayır,48,{}
+AutoTheta_w120,theta,son 120 ay,log,2,hayır,48,{}
+ETS_damped_seasonal_wtum,ets,tüm geçmiş,log,2,hayır,48,{}
+AutoTheta_wtum,theta,tüm geçmiş,log,2,hayır,48,{}
+SARIMA_w60,arima,son 60 ay,log,4,hayır,60,{}
+SARIMA_w120,arima,son 120 ay,log,4,hayır,60,{}
+SARIMA_wtum,arima,tüm geçmiş,log,4,hayır,60,{}
+UCM_llt_seasonal_w120,ucm,son 120 ay,log,3,hayır,60,{}
+UCM_llt_seasonal_wtum,ucm,tüm geçmiş,log,3,hayır,60,{}
+Ridge_w120,ridge,son 120 ay,log,5,hayır,84,{}
+LightGBM_w120,lgbm,son 120 ay,log,6,hayır,84,{}
+Ridge_wtum,ridge,tüm geçmiş,log,5,hayır,84,{}
+LightGBM_wtum,lgbm,tüm geçmiş,log,6,hayır,84,{}
+ElasticNet_wtum,ridge,tüm geçmiş,log,5,hayır,84,{}
+Ridge_sepet_wtum,ridge_aux,tüm geçmiş,log,7,evet,84,"{""aux"": ""sepet_ozet_ve_faktor"", ""aux_start"": ""2015-01""}"
+LightGBM_sepet_wtum,lgbm_aux,tüm geçmiş,log,7,evet,84,"{""aux"": ""sepet_ozet_ve_faktor"", ""aux_start"": ""2015-01""}"

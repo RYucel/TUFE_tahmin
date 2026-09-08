@@ -1,0 +1,284 @@
+{
+  "asama": "data",
+  "zaman_utc": "2026-09-08T05:48:06.601322+00:00",
+  "seed": 20260908,
+  "config": {
+    "project": {
+      "name": "KKTC TUFE Tahmin Sistemi",
+      "seed": 20260908,
+      "locale": "tr_TR"
+    },
+    "data": {
+      "api_base": "https://kktc-tufe-api.stevevaius.workers.dev",
+      "endpoints": {
+        "meta": "/api/v1/meta",
+        "latest": "/api/v1/latest",
+        "tufe": "/api/v1/tufe",
+        "periods": "/api/v1/periods",
+        "openapi": "/api/openapi.json"
+      },
+      "upstream_repo": "https://github.com/RYucel/kktc_tufe",
+      "upstream_monthly_url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
+      "upstream_items_url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
+      "raw_dir": "data/raw",
+      "cutoff": "2026-08",
+      "page_limit": 1000,
+      "timeout_sec": 60,
+      "tolerance": {
+        "rounding_pp": 0.02,
+        "material_pp": 0.25
+      },
+      "expected": {
+        "n_monthly": 594,
+        "first": "1977-03",
+        "last": "2026-08",
+        "last_aylik": 3.0443,
+        "last_ytd": 24.0081,
+        "last_yillik": 37.6979,
+        "items_first": "2015-01",
+        "items_last": "2026-08",
+        "items_n_months": 140
+      }
+    },
+    "split": {
+      "dev_end": "2024-08",
+      "holdout_start_origin": "2024-08",
+      "holdout_end": "2026-08",
+      "dev_origin_start": "2015-01",
+      "subperiods": [
+        {
+          "name": "2015-2020",
+          "start": "2015-01",
+          "end": "2020-12"
+        },
+        {
+          "name": "2021-2024/8",
+          "start": "2021-01",
+          "end": "2024-08"
+        }
+      ]
+    },
+    "horizon": 12,
+    "targets": {
+      "yearend_origin_months": [
+        6,
+        8,
+        10
+      ],
+      "compound": [
+        6,
+        12
+      ]
+    },
+    "selection": {
+      "weights": {
+        "yearend": 0.6,
+        "c6": 0.3,
+        "c12": 0.1
+      },
+      "metric": "MAE",
+      "tie_relative_threshold": 0.02,
+      "tie_break": [
+        "complexity_rank",
+        "runtime_sec",
+        "name"
+      ],
+      "zero_score_epsilon": 1e-09,
+      "min_common_origins": 12,
+      "ensemble": {
+        "enabled": true,
+        "top_k": 3,
+        "distinct_families": true,
+        "scale": "log_monthly",
+        "methods": [
+          "mean",
+          "median"
+        ]
+      }
+    },
+    "calibration": {
+      "method": "conformal_absolute",
+      "levels": [
+        0.8,
+        0.95
+      ],
+      "min_samples": {
+        "0.8": 10,
+        "0.95": 20
+      },
+      "max_history": 60,
+      "update": "expanding"
+    },
+    "backtest": {
+      "windows": [
+        60,
+        120,
+        0
+      ],
+      "transforms": [
+        "log"
+      ],
+      "mase": {
+        "reference": "seasonal_naive_12",
+        "min_denominator_obs": 8
+      }
+    },
+    "bootstrap": {
+      "n_boot": 1000,
+      "block_size_months": 12
+    },
+    "report": {
+      "out_dir": "artifacts",
+      "figures_dir": "artifacts/figures",
+      "tables_dir": "artifacts/tables",
+      "formats": [
+        "png",
+        "svg"
+      ]
+    },
+    "timesfm": {
+      "enabled": true,
+      "repo": "https://github.com/google-research/timesfm",
+      "hf_model": "google/timesfm-3.0-pytorch",
+      "pip_spec": "timesfm",
+      "context_lengths": [
+        512,
+        1024
+      ],
+      "required": true
+    }
+  },
+  "paket_surumleri": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.9.0",
+    "statsmodels": "0.15.0",
+    "lightgbm": "4.7.0",
+    "matplotlib": "3.11.1",
+    "pyarrow": "25.0.1",
+    "torch": "2.14.0",
+    "timesfm": "3.0.1"
+  },
+  "donanim": {
+    "platform": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+    "python": "3.11.15",
+    "processor": "x86_64",
+    "cpu_count": 4,
+    "ram_gb": 16.9,
+    "gpu": "yok (CPU)"
+  },
+  "tepe_bellek_mb": 844.9,
+  "determinizm_notu": "Sabit seed kullanılmıştır. LightGBM/BLAS iş parçacığı sayısı ve donanım farklılıkları nedeniyle son basamak düzeyinde tam determinizm garanti edilmez.",
+  "veri_kaynaklari": [
+    {
+      "name": "openapi",
+      "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/openapi.json",
+      "status": "blocked",
+      "http_code": null,
+      "fetched_at": "2026-09-08T05:48:02.594699+00:00",
+      "sha256": "",
+      "n_bytes": 0,
+      "cache_path": "",
+      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/openapi.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+    },
+    {
+      "name": "meta",
+      "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/meta",
+      "status": "blocked",
+      "http_code": null,
+      "fetched_at": "2026-09-08T05:48:02.816635+00:00",
+      "sha256": "",
+      "n_bytes": 0,
+      "cache_path": "",
+      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/meta (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+    },
+    {
+      "name": "tufe[offset=0]",
+      "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/tufe",
+      "status": "blocked",
+      "http_code": null,
+      "fetched_at": "2026-09-08T05:48:03.090397+00:00",
+      "sha256": "",
+      "n_bytes": 0,
+      "cache_path": "",
+      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/tufe?limit=1000&offset=0&sort=asc (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+    },
+    {
+      "name": "upstream_monthly",
+      "url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
+      "status": "ok",
+      "http_code": 200,
+      "fetched_at": "2026-09-08T05:48:03.564387+00:00",
+      "sha256": "859a40a9e6aed3fccc188ff99ab562c9c21961e540708070fa178f5f9d6ad697",
+      "n_bytes": 74913,
+      "cache_path": "/home/user/TUFE_tahmin/data/raw/tufe_upstream.json",
+      "detail": ""
+    },
+    {
+      "name": "upstream_items",
+      "url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
+      "status": "ok",
+      "http_code": 200,
+      "fetched_at": "2026-09-08T05:48:04.480545+00:00",
+      "sha256": "535031235df9a17a2f424541c35630f9efaa5124d45573d9c42130b9de474d37",
+      "n_bytes": 576031,
+      "cache_path": "/home/user/TUFE_tahmin/data/raw/GRETL_TUFE.csv",
+      "detail": ""
+    }
+  ],
+  "api_meta": null,
+  "api_openapi_uc_noktalari": [],
+  "erisilemeyen_kaynaklar": [
+    {
+      "name": "openapi",
+      "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/openapi.json",
+      "status": "blocked",
+      "http_code": null,
+      "fetched_at": "2026-09-08T05:48:02.594699+00:00",
+      "sha256": "",
+      "n_bytes": 0,
+      "cache_path": "",
+      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/openapi.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+    },
+    {
+      "name": "meta",
+      "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/meta",
+      "status": "blocked",
+      "http_code": null,
+      "fetched_at": "2026-09-08T05:48:02.816635+00:00",
+      "sha256": "",
+      "n_bytes": 0,
+      "cache_path": "",
+      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/meta (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+    },
+    {
+      "name": "tufe[offset=0]",
+      "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/tufe",
+      "status": "blocked",
+      "http_code": null,
+      "fetched_at": "2026-09-08T05:48:03.090397+00:00",
+      "sha256": "",
+      "n_bytes": 0,
+      "cache_path": "",
+      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/tufe?limit=1000&offset=0&sort=asc (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+    }
+  ],
+  "timesfm_durumu": {
+    "available": false,
+    "detail": "TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co çıkış politikası tarafından engellenmektedir; TimesFM 3 çalıştırılamamıştır.",
+    "package_version": "3.0.1",
+    "code_import": "başarılı",
+    "weights_ref": "google/timesfm-3.0-pytorch",
+    "weights_revision": null,
+    "weights_license": "timesfm-non-commercial-license-v1.0 (ticari/üretim kullanımı yasak)",
+    "code_license": "Apache-2.0",
+    "device": "cpu"
+  },
+  "denetim_ozeti": {
+    "GEÇTİ": 15,
+    "BİLGİ": 4,
+    "ENGEL": 3,
+    "UYARI": 3
+  }
+}

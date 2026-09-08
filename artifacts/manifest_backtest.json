@@ -1,0 +1,193 @@
+{
+  "asama": "backtest",
+  "zaman_utc": "2026-09-08T05:58:30.997653+00:00",
+  "seed": 20260908,
+  "config": {
+    "project": {
+      "name": "KKTC TUFE Tahmin Sistemi",
+      "seed": 20260908,
+      "locale": "tr_TR"
+    },
+    "data": {
+      "api_base": "https://kktc-tufe-api.stevevaius.workers.dev",
+      "endpoints": {
+        "meta": "/api/v1/meta",
+        "latest": "/api/v1/latest",
+        "tufe": "/api/v1/tufe",
+        "periods": "/api/v1/periods",
+        "openapi": "/api/openapi.json"
+      },
+      "upstream_repo": "https://github.com/RYucel/kktc_tufe",
+      "upstream_monthly_url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
+      "upstream_items_url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
+      "raw_dir": "data/raw",
+      "cutoff": "2026-08",
+      "page_limit": 1000,
+      "timeout_sec": 60,
+      "tolerance": {
+        "rounding_pp": 0.02,
+        "material_pp": 0.25
+      },
+      "expected": {
+        "n_monthly": 594,
+        "first": "1977-03",
+        "last": "2026-08",
+        "last_aylik": 3.0443,
+        "last_ytd": 24.0081,
+        "last_yillik": 37.6979,
+        "items_first": "2015-01",
+        "items_last": "2026-08",
+        "items_n_months": 140
+      }
+    },
+    "split": {
+      "dev_end": "2024-08",
+      "holdout_start_origin": "2024-08",
+      "holdout_end": "2026-08",
+      "dev_origin_start": "2015-01",
+      "subperiods": [
+        {
+          "name": "2015-2020",
+          "start": "2015-01",
+          "end": "2020-12"
+        },
+        {
+          "name": "2021-2024/8",
+          "start": "2021-01",
+          "end": "2024-08"
+        }
+      ]
+    },
+    "horizon": 12,
+    "targets": {
+      "yearend_origin_months": [
+        6,
+        8,
+        10
+      ],
+      "compound": [
+        6,
+        12
+      ]
+    },
+    "selection": {
+      "weights": {
+        "yearend": 0.6,
+        "c6": 0.3,
+        "c12": 0.1
+      },
+      "metric": "MAE",
+      "tie_relative_threshold": 0.02,
+      "tie_break": [
+        "complexity_rank",
+        "runtime_sec",
+        "name"
+      ],
+      "zero_score_epsilon": 1e-09,
+      "min_common_origins": 12,
+      "ensemble": {
+        "enabled": true,
+        "top_k": 3,
+        "distinct_families": true,
+        "scale": "log_monthly",
+        "methods": [
+          "mean",
+          "median"
+        ]
+      }
+    },
+    "calibration": {
+      "method": "conformal_absolute",
+      "levels": [
+        0.8,
+        0.95
+      ],
+      "min_samples": {
+        "0.8": 10,
+        "0.95": 20
+      },
+      "max_history": 60,
+      "update": "expanding"
+    },
+    "backtest": {
+      "windows": [
+        60,
+        120,
+        0
+      ],
+      "transforms": [
+        "log"
+      ],
+      "mase": {
+        "reference": "seasonal_naive_12",
+        "min_denominator_obs": 8
+      }
+    },
+    "bootstrap": {
+      "n_boot": 1000,
+      "block_size_months": 12
+    },
+    "report": {
+      "out_dir": "artifacts",
+      "figures_dir": "artifacts/figures",
+      "tables_dir": "artifacts/tables",
+      "formats": [
+        "png",
+        "svg"
+      ]
+    },
+    "timesfm": {
+      "enabled": true,
+      "repo": "https://github.com/google-research/timesfm",
+      "hf_model": "google/timesfm-3.0-pytorch",
+      "pip_spec": "timesfm",
+      "context_lengths": [
+        512,
+        1024
+      ],
+      "required": true
+    }
+  },
+  "paket_surumleri": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.9.0",
+    "statsmodels": "0.15.0",
+    "lightgbm": "4.7.0",
+    "matplotlib": "3.11.1",
+    "pyarrow": "25.0.1",
+    "torch": "2.14.0",
+    "timesfm": "3.0.1"
+  },
+  "donanim": {
+    "platform": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+    "python": "3.11.15",
+    "processor": "x86_64",
+    "cpu_count": 4,
+    "ram_gb": 16.9,
+    "gpu": "yok (CPU)"
+  },
+  "tepe_bellek_mb": 1049.4,
+  "determinizm_notu": "Sabit seed kullanılmıştır. LightGBM/BLAS iş parçacığı sayısı ve donanım farklılıkları nedeniyle son basamak düzeyinde tam determinizm garanti edilmez.",
+  "n_aday": 23,
+  "n_baslangic": 116,
+  "sure_sn": 562.6,
+  "birlesim_uyeleri": [
+    "Ridge_wtum",
+    "LightGBM_wtum",
+    "SARIMA_wtum"
+  ],
+  "timesfm_durumu": {
+    "available": false,
+    "detail": "TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co çıkış politikası tarafından engellenmektedir; TimesFM 3 çalıştırılamamıştır.",
+    "package_version": "3.0.1",
+    "code_import": "başarılı",
+    "weights_ref": "google/timesfm-3.0-pytorch",
+    "weights_revision": null,
+    "weights_license": "timesfm-non-commercial-license-v1.0 (ticari/üretim kullanımı yasak)",
+    "code_license": "Apache-2.0",
+    "device": "cpu"
+  },
+  "basitlik_notu": "Basitlik sırası (küçük=daha basit): 0 referans, 2 ETS/Theta, 3 UCM, 4 SARIMA, 5 Ridge/ElasticNet, 6 LightGBM, 7 sepet destekli ML, 8 temel model (TimesFM). Bu sıra sonuçlar görülmeden sabitlenmiştir."
+}

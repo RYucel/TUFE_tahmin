@@ -146,6 +146,35 @@ def stage_data(cfg: dict, args) -> dict:
 
 
 
+
+def _run_paths(cfg, z, specs, origins, H, log) -> tuple:
+    """Geriye dönük testi çalıştırır; TimesFM zero-shot adayları için toplu
+    (batched) çıkarım yolunu kullanır. Sonuç tek tek çalıştırmayla özdeştir."""
+    from src.models import timesfm_adapter as TFM
+
+    batchable = [sp for sp in specs if sp.meta.get("batch_capable")]
+    rest = [sp for sp in specs if not sp.meta.get("batch_capable")]
+    paths, failures = BT.run_backtest(z, rest, origins, H, log=log)
+    for sp in batchable:
+        try:
+            bp = TFM.batch_backtest_paths(
+                cfg, z, origins, H, int(sp.meta["context_length"]), sp.key,
+                int(cfg["timesfm"].get("batch_size", 64)), log=log)
+            if not bp.empty:
+                paths = pd.concat([paths, bp], ignore_index=True)
+                log(f"  {sp.key}: {bp['origin'].nunique()} başlangıç tamam (toplu)")
+        except Exception as exc:
+            log(f"  {sp.key}: toplu çıkarım başarısız ({type(exc).__name__}: {exc}); "
+                "tek tek çalıştırılıyor")
+            p2, f2 = BT.run_backtest(z, [sp], origins, H, log=log)
+            if not p2.empty:
+                paths = pd.concat([paths, p2], ignore_index=True)
+            failures = pd.concat([failures, f2], ignore_index=True)
+    if not paths.empty:
+        paths["origin"] = pd.PeriodIndex(paths["origin"].astype(str), freq="M")
+    return paths, failures
+
+
 def _write_failures(cfg, failures: pd.DataFrame, name: str) -> None:
     """Başarısız denemeler boş olsa bile başlıklı bir CSV yazılır."""
     if failures is None or failures.empty:
@@ -186,7 +215,7 @@ def stage_backtest(cfg: dict, args) -> dict:
 
     log(f"Geliştirme geriye dönük testi: {len(specs)} aday × {len(origins)} başlangıç")
     t0 = time.perf_counter()
-    paths, failures = BT.run_backtest(z, specs, origins, H, log=log)
+    paths, failures = _run_paths(cfg, z, specs, origins, H, log)
     elapsed = time.perf_counter() - t0
     log(f"  süre: {elapsed:.1f} s, tepe bellek: {peak_memory_mb():.0f} MB")
 
@@ -392,7 +421,7 @@ def stage_evaluate(cfg: dict, args) -> dict:
         elapsed = 0.0
     else:
         t0 = time.perf_counter()
-        paths, failures = BT.run_backtest(z, specs, origins, H, log=log)
+        paths, failures = _run_paths(cfg, z, specs, origins, H, log)
         elapsed = time.perf_counter() - t0
         paths.to_parquet(cached)
 

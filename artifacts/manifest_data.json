@@ -1,6 +1,6 @@
 {
   "asama": "data",
-  "zaman_utc": "2026-09-08T05:48:06.601322+00:00",
+  "zaman_utc": "2026-09-08T06:19:03.389306+00:00",
   "seed": 20260908,
   "config": {
     "project": {
@@ -81,7 +81,7 @@
       "tie_break": [
         "complexity_rank",
         "runtime_sec",
-        "name"
+        "model"
       ],
       "zero_score_epsilon": 1e-09,
       "min_common_origins": 12,
@@ -145,6 +145,9 @@
         512,
         1024
       ],
+      "with_covariates": true,
+      "device": null,
+      "batch_size": 64,
       "required": true
     }
   },
@@ -168,7 +171,7 @@
     "ram_gb": 16.9,
     "gpu": "yok (CPU)"
   },
-  "tepe_bellek_mb": 844.9,
+  "tepe_bellek_mb": 618.8,
   "determinizm_notu": "Sabit seed kullanılmıştır. LightGBM/BLAS iş parçacığı sayısı ve donanım farklılıkları nedeniyle son basamak düzeyinde tam determinizm garanti edilmez.",
   "veri_kaynaklari": [
     {
@@ -266,14 +269,27 @@
   ],
   "timesfm_durumu": {
     "available": false,
-    "detail": "TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co çıkış politikası tarafından engellenmektedir; TimesFM 3 çalıştırılamamıştır.",
+    "detail": "TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co erişimi engellenmiş görünüyor; TimesFM 3 ÇALIŞTIRILAMAMIŞTIR.",
     "package_version": "3.0.1",
     "code_import": "başarılı",
     "weights_ref": "google/timesfm-3.0-pytorch",
     "weights_revision": null,
+    "weights_local_path": null,
     "weights_license": "timesfm-non-commercial-license-v1.0 (ticari/üretim kullanımı yasak)",
     "code_license": "Apache-2.0",
-    "device": "cpu"
+    "device": "cpu",
+    "quantile_grid": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "supports_95": false
   },
   "denetim_ozeti": {
     "GEÇTİ": 15,

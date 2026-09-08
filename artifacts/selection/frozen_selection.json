@@ -23,7 +23,7 @@
     "Ridge_wtum",
     "SARIMA_w60"
   ],
-  "frozen_at": "2026-09-08T06:09:36.985303+00:00",
+  "frozen_at": "2026-09-08T06:29:13.818575+00:00",
   "notes": "Seçim yalnızca geliştirme doğrulaması skorlarıyla yapılmıştır. Nihai holdout bu aşamada hiç kullanılmamıştır.",
   "frozen_extra": {
     "kazanan_yapilandirma": {
@@ -93,14 +93,27 @@
     ],
     "timesfm_durumu": {
       "available": false,
-      "detail": "TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co çıkış politikası tarafından engellenmektedir; TimesFM 3 çalıştırılamamıştır.",
+      "detail": "TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co erişimi engellenmiş görünüyor; TimesFM 3 ÇALIŞTIRILAMAMIŞTIR.",
       "package_version": "3.0.1",
       "code_import": "başarılı",
       "weights_ref": "google/timesfm-3.0-pytorch",
       "weights_revision": null,
+      "weights_local_path": null,
       "weights_license": "timesfm-non-commercial-license-v1.0 (ticari/üretim kullanımı yasak)",
       "code_license": "Apache-2.0",
-      "device": "cpu"
+      "device": "cpu",
+      "quantile_grid": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "supports_95": false
     },
     "basitlik_notu": "Basitlik sırası (küçük=daha basit): 0 referans, 2 ETS/Theta, 3 UCM, 4 SARIMA, 5 Ridge/ElasticNet, 6 LightGBM, 7 sepet destekli ML, 8 temel model (TimesFM). Bu sıra sonuçlar görülmeden sabitlenmiştir."
   }

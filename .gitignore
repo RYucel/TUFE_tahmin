@@ -50,3 +50,4 @@ Thumbs.db
 artifacts/*.parquet
 !artifacts/ham_gecmis_tahminler.parquet
 data/raw/*.parquet
+artifacts_dryrun/

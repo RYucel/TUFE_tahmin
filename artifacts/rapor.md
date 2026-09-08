@@ -3,11 +3,11 @@
 **Seçilen model:** `BIRLESIM_mean_3` · aile: ensemble · eğitim penceresi: üye modellerin kendi pencereleri · dönüşüm: log
 **Geliştirme seçim skoru S = 7.8509 yüzde puan** (S = 0.6·MAE_yılsonu + 0.3·MAE_6ay + 0.1·MAE_12ay)
 **Seçim kuralı:** En iyi skora göre göreli farkı %2'den küçük adaylar berabere sayıldı; ardından basitlik, sonra hesaplama maliyeti.
-**Donduruldu:** 2026-09-08T06:09:36.985303+00:00 (nihai holdout açılmadan önce)
+**Donduruldu:** 2026-09-08T06:29:13.818575+00:00 (nihai holdout açılmadan önce)
 
 ## ⚠ Eksik zorunlu bileşen
 
-TimesFM 3 çalıştırılamadı: TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co çıkış politikası tarafından engellenmektedir; TimesFM 3 çalıştırılamamıştır.
+TimesFM 3 çalıştırılamadı: TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co erişimi engellenmiş görünüyor; TimesFM 3 ÇALIŞTIRILAMAMIŞTIR.
 Bu nedenle karşılaştırma **tamamlanmış sayılmaz**.
 
 > Veri kaynağı notu: API'ye ulaşılamadı; API'nin beslendiği yukarı akış deposu kullanıldı (`https://kktc-tufe-api.stevevaius.workers.dev` egress politikasınca engelli). Kullanılan kaynak API'nin beslendiği `https://github.com/RYucel/kktc_tufe` deposudur.

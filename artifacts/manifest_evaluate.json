@@ -1,6 +1,6 @@
 {
   "asama": "evaluate",
-  "zaman_utc": "2026-09-08T06:09:49.318514+00:00",
+  "zaman_utc": "2026-09-08T06:31:36.015628+00:00",
   "seed": 20260908,
   "config": {
     "project": {
@@ -145,6 +145,9 @@
         512,
         1024
       ],
+      "with_covariates": true,
+      "device": null,
+      "batch_size": 64,
       "required": true
     }
   },
@@ -168,10 +171,10 @@
     "ram_gb": 16.9,
     "gpu": "yok (CPU)"
   },
-  "tepe_bellek_mb": 971.2,
+  "tepe_bellek_mb": 844.7,
   "determinizm_notu": "Sabit seed kullanılmıştır. LightGBM/BLAS iş parçacığı sayısı ve donanım farklılıkları nedeniyle son basamak düzeyinde tam determinizm garanti edilmez.",
   "dondurulmus_secim": "BIRLESIM_mean_3",
   "n_baslangic": 25,
-  "sure_sn": 0.0,
+  "sure_sn": 136.3,
   "not": "Nihai test yalnızca performansı DENETLER. Test kazananına bakılarak seçilmiş model değiştirilmemiştir."
 }

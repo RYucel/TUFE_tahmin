@@ -162,6 +162,40 @@ tests/                      pytest testleri
 artifacts/                  çıktılar (tablolar, grafikler, rapor, manifest)
 ```
 
+## Google Colab defteri
+
+`notebooks/KKTC_TUFE_Tahmin_Colab.ipynb` — tüm boru hattını Colab'de çalıştıran,
+kapsamlı analiz ve tahmin defteri. **Yerel ortamda çalıştırılamayan TimesFM 3.0'ı
+da karşılaştırmaya dâhil eder** (Colab'de huggingface.co erişimi ve GPU vardır).
+
+[![Colab'de aç](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RYucel/TUFE_tahmin/blob/claude/kktc-tufe-forecast-kq7hpl/notebooks/KKTC_TUFE_Tahmin_Colab.ipynb)
+
+Defter `src/` modüllerini **olduğu gibi** kullanır — yani orada çalışan kod ile
+`run.py`'nin çalıştırdığı kod aynıdır; defterde yeniden yazılmış bir kopya yoktur.
+
+İçerik: kurulum ve donanım tespiti → veri alma ve kalite denetimi → keşifsel
+analiz (rejimler, mevsimsellik, sepet yayılımı) → **TimesFM 3.0 kurulumu,
+ağırlık indirme ve akıl sağlığı kontrolü** → kayan başlangıçlı geliştirme
+doğrulaması → seçim ve dondurma → nihai holdout → aralık kalibrasyonu →
+12 aylık tahmin → grafikler, Türkçe rapor ve çıktıların ZIP olarak indirilmesi.
+
+Kullanım: *Çalışma zamanı → Türü değiştir → GPU*, sonra *Tümünü çalıştır*.
+`HIZLI_MOD = True` iken geliştirme doğrulaması son 48 başlangıçla koşar (~5 dk);
+tam çalıştırma için `False` yapın.
+
+TimesFM notları (resmî depodan doğrulanmıştır):
+
+* Arayüz `TimesFM3Forecaster.from_pretrained(...)` + `predict_batch(...)`.
+* `TimesFM3Evaluator` alt sınıfı `make_positive=True` varsayılanıyla negatif
+  değerleri kırpar; modelleme serimiz *log değişim* olduğu ve deflasyon
+  aylarında negatif olabildiği için `TimesFM3Forecaster` sınıfı
+  `make_positive=False` ile kullanılır.
+* Kuantil ızgarası 0,1–0,9'dur; **%95 aralığı desteklemez** — ek yöntem olmadan
+  bu modelden %95 aralık sunulmaz.
+* Ağırlıklar süreç başına bir kez yüklenir; zero-shot olduğu için geriye dönük
+  testte tüm başlangıçların bağlamları tek seferde toplu verilir (sonuç tek tek
+  çalıştırmayla özdeştir).
+
 ## Çıktılar
 
 * `artifacts/rapor.html`, `artifacts/rapor.md` — Türkçe rapor

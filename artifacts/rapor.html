@@ -18,9 +18,9 @@ figcaption{font-size:.83rem;color:#555;margin-top:6px}
 code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:.88em}
 .kucuk{font-size:.83rem;color:#555}
 </style></head><body><h1>KKTC TÜFE Tahmin Sistemi — Değerlendirme ve Tahmin Raporu</h1>
-<p class="kucuk">Veri kesimi: <b>2026-08</b> · Tahmin dönemi: <b>2026-09 – 2027-08</b> · Rapor: 08.09.2026 06:11 UTC</p>
+<p class="kucuk">Veri kesimi: <b>2026-08</b> · Tahmin dönemi: <b>2026-09 – 2027-08</b> · Rapor: 08.09.2026 06:31 UTC</p>
 <h2>1. Yönetici özeti</h2>
-<div class="kutu iyi"><b>Seçilen model:</b> <code>BIRLESIM_mean_3</code> — aile: ensemble, eğitim penceresi: üye modellerin kendi pencereleri, dönüşüm: log.<br><b>Geliştirme seçim skoru S = 7.8509</b> yüzde puan (S = 0.60·MAE<sub>yılsonu</sub> + 0.30·MAE<sub>6ay</sub> + 0.10·MAE<sub>12ay</sub>).<br><b>Seçim kuralı:</b> En iyi skora göre göreli farkı %2&#x27;den küçük adaylar berabere sayıldı; ardından basitlik, sonra hesaplama maliyeti.<br><span class="kucuk">Donduruldu: 2026-09-08T06:09:36.985303+00:00 — nihai holdout bu aşamada kullanılmamıştır.</span></div>
+<div class="kutu iyi"><b>Seçilen model:</b> <code>BIRLESIM_mean_3</code> — aile: ensemble, eğitim penceresi: üye modellerin kendi pencereleri, dönüşüm: log.<br><b>Geliştirme seçim skoru S = 7.8509</b> yüzde puan (S = 0.60·MAE<sub>yılsonu</sub> + 0.30·MAE<sub>6ay</sub> + 0.10·MAE<sub>12ay</sub>).<br><b>Seçim kuralı:</b> En iyi skora göre göreli farkı %2&#x27;den küçük adaylar berabere sayıldı; ardından basitlik, sonra hesaplama maliyeti.<br><span class="kucuk">Donduruldu: 2026-09-08T06:29:13.818575+00:00 — nihai holdout bu aşamada kullanılmamıştır.</span></div>
 <p>Veri kesiminden sonraki ana tahminler:</p>
 <table class="dataframe">
   <thead>
@@ -72,7 +72,7 @@ code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:.88em}
 </table>
 <div class="kutu"><b>Ölçülerin ayrımı.</b> “Gelecek 6 ayın bileşik enflasyonu”, “6 ay sonra yıllık enflasyon” ve “takvim yarıyılı enflasyonu” birbirinden FARKLI büyüklüklerdir ve bu raporda ayrı satırlarda verilmiştir. 2026-08 sonrasından bakıldığında yılsonu hedefi 4 ay sonrasıdır.</div>
 <h2>2. Tamamlanmamış / engellenen bileşenler</h2>
-<div class="kutu engel"><b>TimesFM 3 çalıştırılamadı — karşılaştırma bu nedenle TAMAMLANMIŞ SAYILMAZ.</b><br>Paket: <code>timesfm 3.0.1</code> (kod içe aktarma: başarılı), ağırlık: <code>google/timesfm-3.0-pytorch</code>.<br>Ayrıntı: TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co çıkış politikası tarafından engellenmektedir; TimesFM 3 çalıştırılamamıştır.<br>Ağırlık lisansı: <code>timesfm-non-commercial-license-v1.0 (ticari/üretim kullanımı yasak)</code>; kod lisansı: <code>Apache-2.0</code>.</div>
+<div class="kutu engel"><b>TimesFM 3 çalıştırılamadı — karşılaştırma bu nedenle TAMAMLANMIŞ SAYILMAZ.</b><br>Paket: <code>timesfm 3.0.1</code> (kod içe aktarma: başarılı), ağırlık: <code>google/timesfm-3.0-pytorch</code>.<br>Ayrıntı: TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co erişimi engellenmiş görünüyor; TimesFM 3 ÇALIŞTIRILAMAMIŞTIR.<br>Ağırlık lisansı: <code>timesfm-non-commercial-license-v1.0 (ticari/üretim kullanımı yasak)</code>; kod lisansı: <code>Apache-2.0</code>.</div>
 <div class="kutu uyari"><b>Veri kaynağı.</b> API&#x27;ye ulaşılamadı; API&#x27;nin beslendiği yukarı akış deposu kullanıldı (<code>https://kktc-tufe-api.stevevaius.workers.dev</code> bu ortamın çıkış politikasınca engellidir — HTTP 403). Kullanılan kaynak, API’nin kendi beslendiği <code>https://github.com/RYucel/kktc_tufe</code> deposudur; içerik, plan aşamasında doğrulanan başlangıç kontrolleriyle (594 kayıt, 2026-08 aylık %3,0443 / YTD %24,0081 / yıllık %37,6979) birebir uyuşmaktadır.</div>
 <h2>3. Veri kapsamı ve kalite denetimi</h2>
 <h3>Tablo 1a — Veri kapsamı</h3>
@@ -13022,14 +13022,14 @@ code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:.88em}
     <tr>
       <td>TimesFM 3 (zero-shot, ctx 512/1024)</td>
       <td>ÇALIŞTIRILAMADI</td>
-      <td>TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co çıkış politikası tarafından engellenmektedir; TimesFM 3 çalıştırılamamıştır.</td>
+      <td>TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co erişimi engellenmiş görünüyor; TimesFM 3 ÇALIŞTIRILAMAMIŞTIR.</td>
       <td>Zorunlu karşılaştırma bileşeni eksik.</td>
     </tr>
   </tbody>
 </table>
 <h2>10. Lisans, tekrarlanabilirlik ve sınırlar</h2>
 <div class="kutu"><b>Araştırma vs. üretim ayrımı.</b> TimesFM 3.0 ön eğitimli ağırlıkları <code>timesfm-non-commercial-license-v1.0</code> altındadır ve ticari/üretim kullanımına kapalıdır (resmî depo README’si). Bu nedenle TimesFM 3.0 yalnızca araştırma tarafında değerlendirilebilir. Bu çalışmadaki diğer tüm adaylar (statsmodels, scikit-learn, LightGBM) izin verici lisanslıdır ve üretimde kullanılabilir; dolayısıyla “üretimde kullanılabilecek en başarılı model”, TimesFM dışındaki adaylar arasından seçilen modeldir. Üretime dağıtım bu görevin kapsamı dışındadır.</div>
-<p class="kucuk">Seed: 20260908 · Donanım: {&quot;platform&quot;: &quot;Linux-6.18.44-fc-v24-x86_64-with-glibc2.39&quot;, &quot;python&quot;: &quot;3.11.15&quot;, &quot;processor&quot;: &quot;x86_64&quot;, &quot;cpu_count&quot;: 4, &quot;ram_gb&quot;: 16.9, &quot;gpu&quot;: &quot;yok (CPU)&quot;} · Tepe bellek: 1040.3 MB<br>Sabit seed kullanılmıştır. LightGBM/BLAS iş parçacığı sayısı ve donanım farklılıkları nedeniyle son basamak düzeyinde tam determinizm garanti edilmez.</p>
+<p class="kucuk">Seed: 20260908 · Donanım: {&quot;platform&quot;: &quot;Linux-6.18.44-fc-v24-x86_64-with-glibc2.39&quot;, &quot;python&quot;: &quot;3.11.15&quot;, &quot;processor&quot;: &quot;x86_64&quot;, &quot;cpu_count&quot;: 4, &quot;ram_gb&quot;: 16.9, &quot;gpu&quot;: &quot;yok (CPU)&quot;} · Tepe bellek: 844.7 MB<br>Sabit seed kullanılmıştır. LightGBM/BLAS iş parçacığı sayısı ve donanım farklılıkları nedeniyle son basamak düzeyinde tam determinizm garanti edilmez.</p>
 <p class="kucuk">Paket sürümleri: {&quot;numpy&quot;: &quot;2.4.6&quot;, &quot;pandas&quot;: &quot;3.0.5&quot;, &quot;scipy&quot;: &quot;1.17.1&quot;, &quot;scikit-learn&quot;: &quot;1.9.0&quot;, &quot;statsmodels&quot;: &quot;0.15.0&quot;, &quot;lightgbm&quot;: &quot;4.7.0&quot;, &quot;matplotlib&quot;: &quot;3.11.1&quot;, &quot;pyarrow&quot;: &quot;25.0.1&quot;, &quot;torch&quot;: &quot;2.14.0&quot;, &quot;timesfm&quot;: &quot;3.0.1&quot;}</p>
 <h3>Tablo 12 — Çalışma süresi ve bellek kullanımı</h3>
 <p class="kucuk">Süreler geliştirme geriye dönük testinde başlangıç başına ölçülmüştür (tek çekirdek, CPU). Birleşim satırlarında süre üye modellerde sayıldığı için boştur. Bellek, sürecin tepe kullanımıdır. Önce küçük bir denemeyle (<code>--smoke</code>) ölçüm yapılmış, süre/GPU garantisi ölçmeden verilmemiştir.</p>
@@ -13055,7 +13055,7 @@ code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:.88em}
       <td></td>
       <td>0.000</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>BIRLESIM_median_3</td>
@@ -13065,7 +13065,7 @@ code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:.88em}
       <td></td>
       <td>0.000</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>naive_son_ay</td>
@@ -13075,7 +13075,7 @@ code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:.88em}
       <td>0.000</td>
       <td>0.002</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>naive_mevsimsel_12</td>
@@ -13085,7 +13085,7 @@ code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:.88em}
       <td>0.000</td>
       <td>0.004</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>ortalama_6ay</td>
@@ -13095,7 +13095,7 @@ code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:.88em}
       <td>0.000</td>
       <td>0.005</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>ortalama_3ay</td>
@@ -13105,7 +13105,7 @@ code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:.88em}
       <td>0.000</td>
       <td>0.005</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>ortalama_12ay</td>
@@ -13113,191 +13113,191 @@ code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:.88em}
       <td>0.000</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>0.005</td>
+      <td>0.006</td>
       <td>geliştirme</td>
-      <td>932.900</td>
-    </tr>
-    <tr>
-      <td>AutoTheta_w60</td>
-      <td>116</td>
-      <td>0.007</td>
-      <td>0.007</td>
-      <td>0.028</td>
-      <td>0.834</td>
-      <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>AutoTheta_w120</td>
       <td>116</td>
-      <td>0.008</td>
-      <td>0.008</td>
-      <td>0.010</td>
-      <td>0.877</td>
+      <td>0.007</td>
+      <td>0.007</td>
+      <td>0.013</td>
+      <td>0.844</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
+    </tr>
+    <tr>
+      <td>AutoTheta_w60</td>
+      <td>116</td>
+      <td>0.009</td>
+      <td>0.009</td>
+      <td>0.033</td>
+      <td>1.089</td>
+      <td>geliştirme</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>AutoTheta_wtum</td>
       <td>116</td>
       <td>0.011</td>
       <td>0.011</td>
-      <td>0.015</td>
-      <td>1.246</td>
+      <td>0.014</td>
+      <td>1.281</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
+    </tr>
+    <tr>
+      <td>ETS_damped_seasonal_w120</td>
+      <td>116</td>
+      <td>0.045</td>
+      <td>0.042</td>
+      <td>0.165</td>
+      <td>5.274</td>
+      <td>geliştirme</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>ETS_damped_seasonal_w60</td>
       <td>116</td>
       <td>0.051</td>
       <td>0.043</td>
-      <td>0.849</td>
-      <td>5.914</td>
+      <td>0.760</td>
+      <td>5.878</td>
       <td>geliştirme</td>
-      <td>932.900</td>
-    </tr>
-    <tr>
-      <td>ETS_damped_seasonal_w120</td>
-      <td>116</td>
-      <td>0.053</td>
-      <td>0.051</td>
-      <td>0.150</td>
-      <td>6.120</td>
-      <td>geliştirme</td>
-      <td>932.900</td>
-    </tr>
-    <tr>
-      <td>Ridge_w120</td>
-      <td>116</td>
-      <td>0.082</td>
-      <td>0.076</td>
-      <td>0.185</td>
-      <td>9.489</td>
-      <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>UCM_llt_seasonal_w120</td>
       <td>116</td>
-      <td>0.096</td>
-      <td>0.092</td>
-      <td>0.231</td>
-      <td>11.178</td>
+      <td>0.093</td>
+      <td>0.089</td>
+      <td>0.211</td>
+      <td>10.738</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
+    </tr>
+    <tr>
+      <td>Ridge_w120</td>
+      <td>116</td>
+      <td>0.095</td>
+      <td>0.093</td>
+      <td>0.199</td>
+      <td>11.072</td>
+      <td>geliştirme</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>ETS_damped_seasonal_wtum</td>
       <td>116</td>
-      <td>0.099</td>
-      <td>0.094</td>
-      <td>0.146</td>
-      <td>11.432</td>
-      <td>geliştirme</td>
-      <td>932.900</td>
-    </tr>
-    <tr>
-      <td>LightGBM_w120</td>
-      <td>116</td>
       <td>0.114</td>
-      <td>0.112</td>
-      <td>0.148</td>
-      <td>13.233</td>
+      <td>0.114</td>
+      <td>0.134</td>
+      <td>13.181</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>Ridge_wtum</td>
       <td>116</td>
-      <td>0.116</td>
-      <td>0.113</td>
-      <td>0.239</td>
-      <td>13.472</td>
+      <td>0.129</td>
+      <td>0.125</td>
+      <td>0.232</td>
+      <td>14.981</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
+    </tr>
+    <tr>
+      <td>LightGBM_w120</td>
+      <td>116</td>
+      <td>0.131</td>
+      <td>0.135</td>
+      <td>0.155</td>
+      <td>15.232</td>
+      <td>geliştirme</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>Ridge_sepet_wtum</td>
       <td>116</td>
-      <td>0.195</td>
       <td>0.212</td>
-      <td>0.312</td>
-      <td>22.624</td>
+      <td>0.232</td>
+      <td>0.399</td>
+      <td>24.597</td>
       <td>geliştirme</td>
-      <td>932.900</td>
-    </tr>
-    <tr>
-      <td>SARIMA_w60</td>
-      <td>116</td>
-      <td>0.202</td>
-      <td>0.195</td>
-      <td>0.330</td>
-      <td>23.408</td>
-      <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>LightGBM_sepet_wtum</td>
       <td>116</td>
-      <td>0.236</td>
-      <td>0.246</td>
-      <td>0.380</td>
-      <td>27.412</td>
+      <td>0.231</td>
+      <td>0.253</td>
+      <td>0.349</td>
+      <td>26.766</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
+    </tr>
+    <tr>
+      <td>SARIMA_w60</td>
+      <td>116</td>
+      <td>0.237</td>
+      <td>0.228</td>
+      <td>0.400</td>
+      <td>27.478</td>
+      <td>geliştirme</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>UCM_llt_seasonal_wtum</td>
       <td>116</td>
-      <td>0.247</td>
-      <td>0.242</td>
-      <td>0.452</td>
-      <td>28.633</td>
+      <td>0.249</td>
+      <td>0.232</td>
+      <td>0.422</td>
+      <td>28.868</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>SARIMA_w120</td>
       <td>116</td>
-      <td>0.259</td>
-      <td>0.250</td>
-      <td>0.441</td>
-      <td>30.057</td>
+      <td>0.294</td>
+      <td>0.289</td>
+      <td>0.414</td>
+      <td>34.082</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>LightGBM_wtum</td>
       <td>116</td>
-      <td>0.293</td>
-      <td>0.282</td>
-      <td>0.388</td>
-      <td>33.942</td>
+      <td>0.316</td>
+      <td>0.322</td>
+      <td>0.445</td>
+      <td>36.650</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>SARIMA_wtum</td>
       <td>116</td>
-      <td>0.917</td>
-      <td>0.906</td>
-      <td>1.328</td>
-      <td>106.319</td>
+      <td>0.985</td>
+      <td>0.994</td>
+      <td>1.392</td>
+      <td>114.264</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
     <tr>
       <td>ElasticNet_wtum</td>
       <td>116</td>
-      <td>1.857</td>
-      <td>1.829</td>
-      <td>2.232</td>
-      <td>215.371</td>
+      <td>1.967</td>
+      <td>1.956</td>
+      <td>2.443</td>
+      <td>228.196</td>
       <td>geliştirme</td>
-      <td>932.900</td>
+      <td>823.700</td>
     </tr>
   </tbody>
 </table>
-<p class="kucuk">Geliştirme geriye dönük test süresi: 562.6 sn · Nihai test süresi: 0.0 sn</p>
+<p class="kucuk">Geliştirme geriye dönük test süresi: 601.6 sn · Nihai test süresi: 136.3 sn</p>
 <div class="kutu uyari"><b>“En iyi model” ne demektir?</b> Bu ifade, bu veri ve önceden tanımlanan değerlendirme protokolünde en başarılı aday anlamındadır. Gelecekte en az hatayı yapacağına dair bir garanti içermez.</div></body></html>

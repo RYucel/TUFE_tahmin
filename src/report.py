@@ -117,7 +117,7 @@ def build(cfg: dict) -> list[Path]:
 
     A(f"<h1>KKTC TÜFE Tahmin Sistemi — Değerlendirme ve Tahmin Raporu</h1>")
     A(f'<p class="kucuk">Veri kesimi: <b>{cutoff}</b> · Tahmin dönemi: '
-      f'<b>{man_fc["tahmin_donemi"] if man_fc else "—"}</b> · Rapor: {now}</p>')
+      f'<b>{(man_fc or {}).get("tahmin_donemi", "—")}</b> · Rapor: {now}</p>')
 
     # ---------------- yönetici özeti ----------------
     A("<h2>1. Yönetici özeti</h2>")

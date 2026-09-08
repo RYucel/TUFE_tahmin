@@ -11,7 +11,7 @@ from .models.base import ModelSpec
 from .models import baselines as B
 from .models import statistical as S
 from .models import ml as M
-from .models.timesfm_adapter import TimesFMZeroShot
+from .models.timesfm_adapter import TimesFMZeroShot, TimesFMWithPastCovariates
 
 
 def build_specs(cfg: dict, items: pd.DataFrame | None = None,
@@ -72,7 +72,18 @@ def build_specs(cfg: dict, items: pd.DataFrame | None = None,
         for ctx in cfg["timesfm"]["context_lengths"]:
             add(f"TimesFM3_zeroshot_ctx{ctx}",
                 (lambda ctx=ctx: TimesFMZeroShot(cfg, ctx)), "foundation", 0, 8,
-                min_history=48, meta={"context_length": ctx, "finetune": False})
+                min_history=48,
+                meta={"context_length": ctx, "finetune": False,
+                      "batch_capable": True})
+        # Geçmiş yardımcı değişkenli varyant: yalnızca sepet verisi yeterliyse.
+        if items is not None and cfg["timesfm"].get("with_covariates", True):
+            ctx = int(cfg["timesfm"]["context_lengths"][0])
+            add(f"TimesFM3_sepet_ctx{ctx}",
+                (lambda ctx=ctx: TimesFMWithPastCovariates(cfg, ctx, items)),
+                "foundation_aux", 0, 8, uses_exog=True, min_history=84,
+                meta={"context_length": ctx, "finetune": False,
+                      "aux": "sepet_ozet_ve_faktor (yalnızca geçmiş)",
+                      "aux_start": str(items.index.min())})
 
     return specs
 

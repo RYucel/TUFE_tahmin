@@ -101,4 +101,7 @@ timesfm:
   hf_model: "google/timesfm-3.0-pytorch"
   pip_spec: "timesfm"
   context_lengths: [512, 1024]
+  with_covariates: true      # geçmiş sepet özetleriyle çok değişkenli varyant
+  device: null               # null = otomatik (cuda varsa cuda, yoksa cpu)
+  batch_size: 64             # zero-shot toplu çıkarım için (ince ayar yok)
   required: true   # zorunlu karşılaştırma bileşeni; çalıştırılamazsa açıkça raporlanır

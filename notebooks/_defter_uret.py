@@ -8,8 +8,14 @@ cells = []
 HUCRE_ACIKLAMA = {
  "AYARLAR": "Defterin tek kontrol noktası. Aşağıdaki değerleri değiştirip "
    "*Tümünü çalıştır* demeniz yeterli; başka hiçbir hücreye dokunmanız gerekmez.\n\n"
-   "`HIZLI_MOD = True` geliştirme doğrulamasını son 48 başlangıçla koşar (~5 dk). "
-   "Tam sonuçlar için `False` yapın (~20-30 dk, GPU'da).",
+   "⚠️ **`HIZLI_MOD` sonuçları anlamlı biçimde değiştirir.** `True` iken "
+   "geliştirme doğrulaması yalnızca **son 48 başlangıçla** (2020-09 → 2024-08) "
+   "koşar; bu, 2021-2023 yüksek enflasyon dönemine denk gelen dar ve zor bir "
+   "kesittir. Yılsonu bileşenine yalnızca **3 yıl × 3 başlangıç = 9 gözlem** "
+   "girer, oysa skorun %60'ı bu bileşendir. Alt dönem tablosundaki "
+   "*2015-2020* satırları da bu yüzden boş çıkar.\n\n"
+   "Sıralamayı ciddiye alacaksanız **`HIZLI_MOD = False`** yapın: 116 başlangıç "
+   "(2015-01 → 2024-08), yılsonunda 27 gözlem / 9 yıl. Süre GPU'da ~20-30 dk.",
  "Paketleri kur": "Colab'de hazır gelmeyen paketleri kurar. `TIMESFM_CALISTIR` açıksa "
    "TimesFM 3.0 arayüzü (`timesfm3`) resmî depodan kurulur — PyPI çarkı yalnızca 2.5 "
    "kodunu taşıyabildiği için depo kurulumu 3.0'ı garanti eder.",
@@ -48,7 +54,13 @@ HUCRE_ACIKLAMA = {
    "testle yapılır.",
  "Aday listesi": "Karşılaştırmaya girecek model/pencere/dönüşüm yapılandırmaları. "
    "Liste sonuçlar görülmeden tanımlanmıştır; `basitlik` sütunu beraberlik bozmada "
-   "kullanılan önceden sabitlenmiş sıradır.",
+   "kullanılan önceden sabitlenmiş sıradır.\n\n"
+   "**TimesFM sepet varyantı hakkında:** yardımcı seri 2015'te başladığı ve "
+   "TimesFM `past_only_covariates` girdisini bağlamla aynı uzunlukta istediği "
+   "için bu varyantın fiili bağlamı sepet dönemine (139 ay) kırpılır. Yardımcı "
+   "verinin katkısı bağlam uzunluğu farkıyla karışmasın diye listeye **aynı kısa "
+   "bağlamla çalışan tek değişkenli bir kontrol** de eklenir "
+   "(`TimesFM3_zeroshot_ctx139`). Karşılaştırma bu ikisi arasında yapılmalıdır.",
  "Geliştirme geriye dönük testini çalıştır": "Her başlangıç `t` için yalnızca "
    "`z[≤ t]` ile eğitilir ve 12 ay tahmin edilir. TimesFM ince ayarsız olduğu için "
    "yeniden eğitim yoktur; tüm başlangıçların bağlamları tek seferde toplu verilir — "

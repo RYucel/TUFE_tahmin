@@ -76,14 +76,30 @@ def build_specs(cfg: dict, items: pd.DataFrame | None = None,
                 meta={"context_length": ctx, "finetune": False,
                       "batch_capable": True})
         # Geçmiş yardımcı değişkenli varyant: yalnızca sepet verisi yeterliyse.
+        #
+        # Yardımcı seri 2015'te başladığı ve TimesFM past_only_covariates'i
+        # bağlamla aynı uzunlukta istediği için bu varyantın FİİLİ bağlamı
+        # sepet dönemine kırpılır. Adil karşılaştırma için AYNI kısa bağlamla
+        # çalışan tek değişkenli bir kontrol de listeye eklenir; aksi hâlde
+        # yardımcı verinin katkısı bağlam uzunluğu farkıyla karışırdı.
         if items is not None and cfg["timesfm"].get("with_covariates", True):
             ctx = int(cfg["timesfm"]["context_lengths"][0])
+            fiili = min(ctx, len(items) - 1)          # item_summaries bir ay kaybeder
             add(f"TimesFM3_sepet_ctx{ctx}",
                 (lambda ctx=ctx: TimesFMWithPastCovariates(cfg, ctx, items)),
                 "foundation_aux", 0, 8, uses_exog=True, min_history=84,
-                meta={"context_length": ctx, "finetune": False,
+                meta={"context_length": ctx, "fiili_baglam_ay": fiili,
+                      "finetune": False,
                       "aux": "sepet_ozet_ve_faktor (yalnızca geçmiş)",
-                      "aux_start": str(items.index.min())})
+                      "aux_start": str(items.index.min()),
+                      "eslesen_kontrol": f"TimesFM3_zeroshot_ctx{fiili}"})
+            if fiili not in cfg["timesfm"]["context_lengths"]:
+                add(f"TimesFM3_zeroshot_ctx{fiili}",
+                    (lambda f=fiili: TimesFMZeroShot(cfg, f)), "foundation", 0, 8,
+                    min_history=48,
+                    meta={"context_length": fiili, "finetune": False,
+                          "batch_capable": True,
+                          "rol": "sepet varyantı için eşleşen tek değişkenli kontrol"})
 
     return specs
 

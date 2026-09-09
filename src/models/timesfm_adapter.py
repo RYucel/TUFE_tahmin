@@ -222,37 +222,66 @@ class TimesFMWithPastCovariates(TimesFMZeroShot):
     uses_exog = True
 
     def __init__(self, cfg: dict, context_length: int = 512,
-                 items: pd.DataFrame | None = None, n_cov: int = 4):
+                 items: pd.DataFrame | None = None, n_cov: int = 4,
+                 min_ortak_ay: int = 60):
         super().__init__(cfg, context_length)
         self.items = items
         self.n_cov = int(n_cov)
-        self.name = f"TimesFM-3.0(zero-shot+sepet,ctx={context_length})"
+        self.min_ortak_ay = int(min_ortak_ay)
+        self.name = f"TimesFM-3.0(zero-shot+sepet,ctx<={context_length})"
         self._cov: np.ndarray | None = None
 
     def fit(self, z, exog=None):
-        super().fit(z)
-        self._cov = None
-        if self.items is None:
-            return self
+        """Bağlam penceresi, yardımcı değişkenlerin BULUNDUĞU aralıkla sınırlanır.
+
+        Yardımcı seri (sepet özetleri) 2015'te başlar; ana seri 1977'de. TimesFM
+        ``past_only_covariates`` bağlamla aynı uzunlukta olmak zorunda olduğundan
+        bağlam, ortak aya kırpılır. Bu, tek değişkenli varyanttan daha KISA bir
+        bağlam demektir ve karşılaştırmada bu şekilde raporlanır.
+
+        Yardımcı değişken kurulamıyorsa model sessizce düz zero-shot'a
+        DÜŞMEZ; hata fırlatır ve geriye dönük test bunu başarısız deneme olarak
+        kaydeder.
+        """
         from ..features import item_summaries
+
+        if self.items is None:
+            raise RuntimeError(
+                f"{self.name}: sepet verisi verilmedi; yardımcı değişkenli "
+                "varyant çalıştırılamaz.")
         aux = item_summaries(self.items, upto=z.index[-1])
         if aux is None or aux.empty:
-            return self
-        aux = aux.reindex(z.index).ffill()
-        cols = [c for c in aux.columns if aux[c].notna().all()][: self.n_cov]
+            raise RuntimeError(
+                f"{self.name}: sepet özetleri üretilemedi (yetersiz kapsam).")
+
+        ortak = z.index.intersection(aux.index)
+        if len(ortak) < self.min_ortak_ay:
+            raise RuntimeError(
+                f"{self.name}: ana seri ile sepet özetlerinin ortak dönemi "
+                f"{len(ortak)} ay; en az {self.min_ortak_ay} ay gerekiyor.")
+
+        ctx_idx = ortak[-self.context_length:]
+        cols = [c for c in aux.columns if aux.loc[ctx_idx, c].notna().all()][: self.n_cov]
         if not cols:
-            return self
-        mat = aux[cols].to_numpy(dtype=np.float32).T          # (n_cov, T)
-        self._cov = mat[:, -len(self._ctx):]
+            raise RuntimeError(
+                f"{self.name}: bağlam penceresinde ({ctx_idx[0]}–{ctx_idx[-1]}) "
+                "eksiksiz yardımcı sütun yok.")
+
+        self._ctx = np.asarray(z.loc[ctx_idx], dtype=np.float32)
+        self._cov = aux.loc[ctx_idx, cols].to_numpy(dtype=np.float32).T   # (n_cov, T)
+        self._cov_cols = cols
+        self._ctx_span = (str(ctx_idx[0]), str(ctx_idx[-1]))
         return self
 
     def predict(self, h):
-        kw = {}
-        if self._cov is not None and self._cov.shape[1] == len(self._ctx):
-            kw["past_only_covariates"] = [self._cov]
+        if self._cov is None or self._cov.shape[1] != len(self._ctx):
+            raise RuntimeError(
+                f"{self.name}: yardımcı değişken matrisi bağlamla hizalı değil "
+                f"({None if self._cov is None else self._cov.shape} vs "
+                f"{len(self._ctx)}). Sessiz düşüş yapılmaz.")
         out = list(self._forecaster().predict_batch(
             contexts=[self._ctx], horizon=h, return_quantiles=False,
-            make_positive=False, **kw))
+            make_positive=False, past_only_covariates=[self._cov]))
         return np.asarray(out[0].forecast, dtype=float).reshape(-1)[:h]
 
 

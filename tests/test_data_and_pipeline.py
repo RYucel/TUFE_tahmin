@@ -213,3 +213,84 @@ def test_horizon_covers_12_and_no_gap():
     per = pd.PeriodIndex(t["tarih"], freq="M")
     assert len(per) == 12
     assert all((per[i + 1] - per[i]).n == 1 for i in range(11))
+
+
+# --------------------------------------------------------------------------- #
+# TimesFM yardımcı değişkenli varyant — sessiz düşüş regresyon testleri
+# --------------------------------------------------------------------------- #
+class _SahteForecaster:
+    """predict_batch çağrısının aldığı argümanları kaydeden sahte model."""
+
+    def __init__(self):
+        self.cagrilar = []
+
+    def predict_batch(self, contexts, horizon, **kw):
+        self.cagrilar.append({"contexts": contexts, "horizon": horizon, **kw})
+
+        class _Cikti:
+            forecast = np.zeros(horizon)
+        return iter([_Cikti()])
+
+
+def _sepet_ornegi(start="2015-01", n=140, n_item=40):
+    idx = pd.period_range(start, periods=n, freq="M")
+    rng = np.random.default_rng(3)
+    taban = np.exp(np.cumsum(rng.normal(0.02, 0.01, (n, n_item)), axis=0)) * 100
+    return pd.DataFrame(taban, index=idx,
+                        columns=[f"kalem{i}" for i in range(n_item)])
+
+
+def test_timesfm_sepet_varyanti_gercekten_kovaryat_gonderir(monkeypatch):
+    """Sepet varyantı, past_only_covariates'i GERÇEKTEN göndermeli.
+
+    Regresyon: bağlam 1977'de başlayıp yardımcı seri 2015'te başladığı için
+    hizalama başarısız oluyor ve model sessizce düz zero-shot'a düşüyordu; iki
+    varyant o zaman ayırt edilemez skorlar üretiyordu.
+    """
+    from src.models import timesfm_adapter as TFM
+
+    items = _sepet_ornegi()
+    z = pd.Series(to_log(np.full(600, 2.0)),
+                  index=pd.period_range("1977-03", periods=600, freq="M"))
+    cfg = {"timesfm": {"hf_model": "sahte", "device": "cpu"}}
+
+    sahte = _SahteForecaster()
+    monkeypatch.setattr(TFM, "load_forecaster", lambda *a, **k: sahte)
+
+    model = TFM.TimesFMWithPastCovariates(cfg, context_length=512, items=items)
+    model.fit(z)
+    model.predict(12)
+
+    cagri = sahte.cagrilar[-1]
+    assert "past_only_covariates" in cagri, "yardımcı değişkenler gönderilmedi"
+    cov = cagri["past_only_covariates"][0]
+    ctx = cagri["contexts"][0]
+    assert cov.ndim == 2 and cov.shape[0] >= 1
+    assert cov.shape[1] == len(ctx), "kovaryat uzunluğu bağlamla hizalı değil"
+    assert np.isfinite(cov).all()
+    # bağlam, sepetin bulunduğu döneme kırpılmış olmalı (512 aya değil)
+    assert len(ctx) <= len(items), "bağlam sepet dönemine kırpılmamış"
+
+
+def test_timesfm_sepet_varyanti_sessizce_dusmez(monkeypatch):
+    """Yardımcı değişken kurulamıyorsa HATA vermeli, düz zero-shot'a düşmemeli."""
+    from src.models import timesfm_adapter as TFM
+
+    cfg = {"timesfm": {"hf_model": "sahte", "device": "cpu"}}
+    z = pd.Series(to_log(np.full(200, 2.0)),
+                  index=pd.period_range("1990-01", periods=200, freq="M"))
+
+    with pytest.raises(RuntimeError, match="sepet verisi verilmedi"):
+        TFM.TimesFMWithPastCovariates(cfg, 512, items=None).fit(z)
+
+    # sepet özeti üretilemeyecek kadar kısa geçmiş → hata
+    cok_kisa = _sepet_ornegi(start="1990-01", n=12, n_item=40)
+    with pytest.raises(RuntimeError, match="sepet özetleri üretilemedi"):
+        TFM.TimesFMWithPastCovariates(cfg, 512, items=cok_kisa).fit(z)
+
+    # sepet var ama ana seriyle ortak dönem çok kısa → hata
+    z_kisa = pd.Series(to_log(np.full(36, 2.0)),
+                       index=pd.period_range("2019-01", periods=36, freq="M"))
+    items = _sepet_ornegi()          # 2015-01'den itibaren 140 ay
+    with pytest.raises(RuntimeError, match="ortak dönemi"):
+        TFM.TimesFMWithPastCovariates(cfg, 512, items=items).fit(z_kisa)

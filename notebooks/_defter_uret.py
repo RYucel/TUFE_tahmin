@@ -1,7 +1,130 @@
 """Colab defterini üretir: notebooks/KKTC_TUFE_Tahmin_Colab.ipynb"""
-import json, pathlib
+import json, pathlib, re
 
 cells = []
+
+# Her kod hücresinin ÜSTÜNE konacak markdown açıklaması.
+# Anahtar: kod içindeki "#@title" başlığı (form süslemesi temizlenmiş hâli).
+HUCRE_ACIKLAMA = {
+ "AYARLAR": "Defterin tek kontrol noktası. Aşağıdaki değerleri değiştirip "
+   "*Tümünü çalıştır* demeniz yeterli; başka hiçbir hücreye dokunmanız gerekmez.\n\n"
+   "`HIZLI_MOD = True` geliştirme doğrulamasını son 48 başlangıçla koşar (~5 dk). "
+   "Tam sonuçlar için `False` yapın (~20-30 dk, GPU'da).",
+ "Paketleri kur": "Colab'de hazır gelmeyen paketleri kurar. `TIMESFM_CALISTIR` açıksa "
+   "TimesFM 3.0 arayüzü (`timesfm3`) resmî depodan kurulur — PyPI çarkı yalnızca 2.5 "
+   "kodunu taşıyabildiği için depo kurulumu 3.0'ı garanti eder.",
+ "Donanım ve sürüm tespiti": "Ölçülen süre ve bellek değerleri donanıma bağlıdır; bu "
+   "hücre raporlanan sayıların bağlamını kaydeder. GPU yoksa uyarı basar — defter yine "
+   "çalışır, yalnızca TimesFM yavaşlar.",
+ "Depoyu klonla ve içeri al": "Depo `/content/TUFE_tahmin` altına klonlanır ve "
+   "`sys.path`'e eklenir. Çalışılan commit yazdırılır, böylece çıktıların hangi "
+   "sürümle üretildiği belli olur.",
+ "Yapılandırmayı yükle": "`config.yaml` okunur ve yalnızca ortama özgü alanlar "
+   "(kesim, ufuk, TimesFM ayarları) üzerine yazılır. **Seçim ağırlıkları ve beraberlik "
+   "kuralı burada değiştirilmez** — sonuçlar görülmeden sabitlenmiştir.",
+ "Veriyi indir": "Birincil kaynak KKTC TÜFE API'sidir; uç nokta adları OpenAPI "
+   "belgesinden doğrulanır ve sayfalama `limit`/`offset` ile tüketilir. API'ye "
+   "ulaşılamazsa **API'nin kendi beslendiği** yukarı akış deposuna düşülür ve bu durum "
+   "açıkça yazdırılır — kaynak sessizce değiştirilmez.",
+ "Kalite denetimi": "Kontroller veriyi **düzeltmez**, yalnızca raporlar. Yuvarlama "
+   "farkları (≤ 0,02 puan) ile maddi uyuşmazlıklar (> 0,25 puan) ayrı sayılır; "
+   "olağandışı enflasyon ayları silinmez ve kırpılmaz.",
+ "Seri, rejimler ve dağılım": "Üç panel: tüm tarih aylık değişim, resmî yıllık "
+   "enflasyon ve oranlardan üretilen **sentetik zincir endeks** (resmî endeks değildir; "
+   "pozitiftir ama monoton artması gerekmez).",
+ "Rejim tablosu ve mevsimsellik": "Dönem dönem ortalama ve oynaklık, takvim ayı "
+   "etkisi ve otokorelasyon. 12. gecikmedeki değer mevsimsel modellerin işe yarayıp "
+   "yaramayacağına dair ilk ipucudur.",
+ "Sepet madde fiyatları": "520 kalemin özetleri ve resmî TÜFE ile karşılaştırması. "
+   "Geçerli tarihsel sepet ağırlıkları bulunmadığından ağırlıksız kalem ortalaması "
+   "resmî TÜFE tahmini olarak **sunulmaz**; yalnızca yardımcı bilgidir.",
+ "TimesFM 3.0'ı yükle ve doğrula": "Defterin yerel ortama göre asıl farkı budur: "
+   "Colab'de huggingface.co erişilebilir olduğu için TimesFM 3.0 gerçekten "
+   "çalıştırılabilir. Hücre üç aşamayı ayrı raporlar — kod içe aktarma, ağırlık "
+   "indirme, deneme tahmini — ve takılırsa hangi aşamada takıldığını gizlemez.",
+ "TimesFM 3.0 tek başına": "Son 12 ay gizlenip modelden tahmin istenir. Bu **tek bir "
+   "başlangıçtır ve model karşılaştırması değildir**; amacı modelin bu seride makul "
+   "davranıp davranmadığını görmektir. Karşılaştırma aşağıdaki kayan başlangıçlı "
+   "testle yapılır.",
+ "Aday listesi": "Karşılaştırmaya girecek model/pencere/dönüşüm yapılandırmaları. "
+   "Liste sonuçlar görülmeden tanımlanmıştır; `basitlik` sütunu beraberlik bozmada "
+   "kullanılan önceden sabitlenmiş sıradır.",
+ "Geliştirme geriye dönük testini çalıştır": "Her başlangıç `t` için yalnızca "
+   "`z[≤ t]` ile eğitilir ve 12 ay tahmin edilir. TimesFM ince ayarsız olduğu için "
+   "yeniden eğitim yoktur; tüm başlangıçların bağlamları tek seferde toplu verilir — "
+   "sonuç tek tek çalıştırmayla özdeştir, yalnızca çok daha hızlıdır.\n\n"
+   "**En uzun süren hücre budur.** `HIZLI_MOD = False` ise 20-30 dakika sürebilir.",
+ "Birleşimleri ekle ve hedefleri puanla": "Birleşim üyeleri geliştirme skorlarına "
+   "göre farklı ailelerden seçilir ve birleştirme **aylık log değişim ölçeğinde** "
+   "yapılır; ekonomik dönüşümler (bileşik, YTD, yılsonu) birleşimden sonra tek ve "
+   "tutarlı biçimde uygulanır.",
+ "Geliştirme sıralaması": "Skor tüm adaylar için **ortak başlangıçlarda** hesaplanır, "
+   "böylece daha az veya daha kolay dönem üzerinde çalışan model avantajlı "
+   "gösterilmez. Yılsonu bileşeni yalnızca üç başlangıcı da (Haziran/Ağustos/Ekim "
+   "sonu) değerlendirilebilen tam yıllardan gelir.",
+ "Kazananı belirle ve SEÇİMİ DONDUR": "Kural önceden sabittir: en iyi skora göre "
+   "%2'den yakın adaylar berabere sayılır, sonra daha basit, sonra daha ucuz model "
+   "seçilir. Seçim dosyaya yazılır ve **nihai holdout ancak bundan sonra açılır**.\n\n"
+   "Birleşim üyeleri geliştirme skorlarına bakılarak seçildiği için birleşimin "
+   "*geliştirme* skoru bu açıdan iyimserdir; nihai test bundan etkilenmez.",
+ "Alt dönem dayanıklılığı": "Sonuçların tek bir döneme mi bağlı olduğunu gösterir. "
+   "Bu kesitlere bakılarak **ağırlıklar değiştirilmez** — yalnızca yorum içindir.",
+ "Nihai testi çalıştır": "Dondurulmuş seçim dosyası olmadan bu hücre hata verir; kapı "
+   "budur. Ağustos 2024'ten itibaren ay ay ilerlenir ve önceki test ayları sonraki "
+   "başlangıçların eğitiminde kullanılabilir — ama test skorlarına bakılarak hiçbir "
+   "ayar değiştirilmez.",
+ "Nihai test sonuçları": "Bu tablo performansı yalnızca **denetler**. 24 aylık testte "
+   "iki tamamlanmış yılsonu vardır; yılsonu üstünlüğü buradan yüksek kesinlikle "
+   "kanıtlanamaz. Mevsimsel-naive'in test MASE'si de tanım gereği 1 değildir.",
+ "Geliştirme ↔ nihai test tutarlılığı": "İki dönemin sıralamaları ne kadar örtüşüyor? "
+   "Düşük korelasyon, tek bir 24 aylık pencerede sıralamanın ne kadar oynak "
+   "olabildiğini gösterir — seçim yine de değiştirilmez.",
+ "Model farkları": "Fark aralıkları örtüşen hataları hesaba katan blok bootstrap ile "
+   "üretilir (yılsonunda blok = yıl). Diebold–Mariano **destekleyicidir**: anlamsız "
+   "sonuç eşdeğerlik kanıtı değildir ve az örnek ile çoklu karşılaştırma sınırları "
+   "geçerlidir.",
+ "Kapsama, genişlik ve skorlar": "Aralıklar doğrudan ilgili dönem hedefinin geçmiş "
+   "hatalarından üretilir; aylık sınırlar çarpılarak kümülatif aralık **oluşturulmaz**. "
+   "Yüksek kapsama + çok geniş aralık, iyi kalibrasyon değil aşırı genişlik işaretidir.",
+ "Yeniden eğit ve 12 aylık yolu üret": "Seçilmiş yapılandırma veri kesimine kadar "
+   "yeniden eğitilir ve **seçilmiş eğitim penceresi korunur** — son 60 ay kazandıysa "
+   "tüm geçmişe geçilmez.",
+ "Dönem özetleri": "\"Gelecek 6 ayın bileşik enflasyonu\", \"6 ay sonra yıllık "
+   "enflasyon\" ve \"takvim yarıyılı enflasyonu\" farklı büyüklüklerdir; burada ayrı "
+   "satırlarda verilir. Yılsonu, doğrulanmış **resmî** Ağustos YTD değerinden başlar.",
+ "Ana model ve iki alternatifin karşılaştırması": "Aynı dönem hedeflerinde ana model "
+   "ile iki alternatifin tahminleri yan yana. Aradaki fark, tek bir sayıya ne kadar "
+   "güvenilebileceği hakkında fikir verir.",
+ "Tahmin grafikleri": "Gerçekleşme ve tahmin çizgi biçimiyle ayrılır, tahmin "
+   "başlangıcı işaretlenir; başlık ve eksenlerde veri kesimi ile ölçü birimi bulunur.",
+ "Model × hedef hata ısı haritası": "Hangi modelin hangi ufukta iyi olduğunu tek "
+   "bakışta gösterir. Geliştirme ve nihai test ayrı ayrı çizilir.",
+ "Tabloları, grafikleri ve Türkçe raporu üret": "Tüm çıktıları `artifacts/` altına "
+   "yazar: CSV tablolar, Excel, PNG/SVG grafikler, tahmin JSON'u, tarihli arşiv ve "
+   "çalıştırmanın manifest'i (ayarlar, sürümler, seed, süre, donanım).",
+ "Raporu defterin içinde göster": "Üretilen Türkçe HTML raporunu defterin içine "
+   "gömer. Aynı dosya `artifacts/rapor.html` olarak da diskte durur.",
+ "Araştırmada ve üretimde en başarılı modeller": "TimesFM 3.0 ağırlıkları ticari ve "
+   "üretim kullanımına kapalı olduğundan iki soru ayrı yanıtlanır: bu veride en "
+   "başarılı aday hangisi, ve lisans açısından üretimde kullanılabilecek en başarılı "
+   "aday hangisi.",
+ "Testleri çalıştır": "Depodaki test paketi: sızıntı kontrolleri, ekonomik formüller, "
+   "ortak MASE paydası, kalibrasyonun zaman kuralı ve seçim kuralı. Hepsi geçmeli.",
+ "Bütün çıktıları ZIP olarak indir": "`artifacts/` dizinini tek dosyada indirir. "
+   "Colab çalışma zamanı kapandığında diskteki her şey silinir, bu yüzden saklamak "
+   "istediklerinizi buradan indirin.",
+}
+
+
+def _aciklama_bul(baslik: str) -> str:
+    """Başlığa en iyi eşleşen açıklamayı bulur (önek eşleşmesi yeterlidir)."""
+    if baslik in HUCRE_ACIKLAMA:
+        return HUCRE_ACIKLAMA[baslik]
+    for anahtar, metin in HUCRE_ACIKLAMA.items():
+        if baslik.startswith(anahtar):
+            return metin
+    return ""
+
 
 def _lines(src: str) -> list[str]:
     """Metni .ipynb `source` listesine çevirir.
@@ -19,10 +142,37 @@ def md(src):
                   "source": _lines(src)})
 
 def code(src, **meta):
+    """Kod hücresi ekler; varsa "#@title" başlığını AYRI bir markdown hücresine taşır.
+
+    Colab, "#@title" ile başlayan hücrelerin kodunu gizler ve yalnızca form
+    başlığını gösterir. Başlığı ve açıklamayı markdown hücresine almak kodu
+    görünür kılar ve defteri okunur hâle getirir.
+    """
+    text = src.strip("\n")
+    satirlar = text.split("\n")
+
+    baslik = None
+    if satirlar and satirlar[0].lstrip().startswith("#@title"):
+        ham = satirlar[0].split("#@title", 1)[1]
+        baslik = re.sub(r"\{[^}]*\}", "", ham).strip()          # { display-mode: ... } at
+        satirlar = satirlar[1:]
+        while satirlar and not satirlar[0].strip():
+            satirlar = satirlar[1:]
+
+    # Colab form açıklamalarını (#@param) kaldır: kod her ortamda düz Python kalsın
+    satirlar = [re.sub(r"\s*#@param\b.*$", "", ln) for ln in satirlar]
+
+    if baslik:
+        parcalar = [f"### {baslik}"]
+        aciklama = _aciklama_bul(baslik)
+        if aciklama:
+            parcalar.append(aciklama)
+        md("\n\n".join(parcalar))
+
     m = {"id": f"c{len(cells)}"}
     m.update(meta)
     cells.append({"cell_type": "code", "execution_count": None, "metadata": m,
-                  "outputs": [], "source": _lines(src)})
+                  "outputs": [], "source": _lines("\n".join(satirlar))})
 
 # ---------------------------------------------------------------- 0. başlık
 md(r"""
@@ -105,7 +255,7 @@ print(f"Hızlı mod: {HIZLI_MOD} · TimesFM: {TIMESFM_CALISTIR} · kesim: {VERI_
 
 code(r"""
 #@title Paketleri kur (2-4 dk)
-import subprocess, sys, os, textwrap
+import subprocess, sys, os
 
 def sh(cmd, quiet=True):
     print(f"$ {cmd}")

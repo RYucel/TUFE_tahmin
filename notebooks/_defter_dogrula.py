@@ -27,12 +27,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 NB = ROOT / "notebooks" / "KKTC_TUFE_Tahmin_Colab.ipynb"
 
+# Kurulum ve Colab'e özgü hücreler: yerel doğrulamada çalıştırılmaz.
+# (Başlıklar markdown hücrelerine taşındığı için kod içeriğine göre eşleşilir.)
 ATLANACAK = [
-    "#@title Paketleri kur",
-    "#@title Depoyu klonla",
-    "#@title Raporu defterin içinde göster",
-    "#@title Bütün çıktıları ZIP",
+    'sh("pip install',                 # paket kurulumu
+    "git clone -q --branch",           # depoyu klonlama
+    "display(HTML((out_dir(cfg)",      # raporu defterde gösterme
+    "shutil.make_archive",             # ZIP indirme
 ]
+
+AYARLAR_ISARETI = "REPO_URL"           # AYARLAR hücresini tanıyan ifade
 
 # Çalıştırma sırasında defterdeki AYARLAR hücresinin yerine geçer.
 AYARLAR_DRYRUN = """
@@ -100,11 +104,11 @@ def calistir(nb: dict) -> int:
         if c["cell_type"] != "code":
             continue
         src = "".join(c["source"])          # AYIRAÇSIZ — satır sonları zaten içinde
-        baslik = src.split("\n", 1)[0][:70]
+        baslik = next((ln for ln in src.split("\n") if ln.strip()), "")[:70]
         if any(mk in src for mk in ATLANACAK):
             print(f"--- [{i}] ATLANDI: {baslik}")
             continue
-        if "#@title AYARLAR" in src:
+        if AYARLAR_ISARETI in src and "HIZLI_MOD" in src:
             src = AYARLAR_DRYRUN
         print(f"--- [{i}] {baslik}", flush=True)
         try:

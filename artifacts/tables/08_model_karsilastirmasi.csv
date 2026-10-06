@@ -1,0 +1,19 @@
+﻿olcu,tanim,deger_pct,donem,rol,model
+2026 yılsonu enflasyonu (Ara 2026/Ara 2025),"Gerçekleşmiş YTD (%24.0081, 2026-08) + 4 aylık tahmin",40.80710447704776,2026-01 → 2026-12,ana,BIRLESIM_mean_3
+Gelecek 6 ayın BİLEŞİK enflasyonu,Başlangıç sonrası 6 ayın bileşiği (yıllık enflasyon DEĞİLDİR),21.608279409621513,2026-09 → 2027-02,ana,BIRLESIM_mean_3
+Gelecek 12 ayın BİLEŞİK enflasyonu,Başlangıç sonrası 12 ayın bileşiği,49.78118349493095,2026-09 → 2027-08,ana,BIRLESIM_mean_3
+Temmuz–Aralık 2026 bileşik değişimi (2. dönem),2 ay gerçekleşme + 4 ay tahmin,20.39650016268547,2026-07 → 2026-12,ana,BIRLESIM_mean_3
+Ocak–Haziran 2027 bileşik değişimi (1. dönem),Tamamı tahmin (takvim yarıyılı),22.989557673609276,2027-01 → 2027-06,ana,BIRLESIM_mean_3
+2027-02 YILLIK enflasyonu,12 aylık geriye dönük değişim (6 aylık bileşik DEĞİLDİR),43.9104344741192,2026-03 → 2027-02,ana,BIRLESIM_mean_3
+2026 yılsonu enflasyonu (Ara 2026/Ara 2025),"Gerçekleşmiş YTD (%24.0081, 2026-08) + 4 aylık tahmin",39.91943176200925,2026-01 → 2026-12,alternatif1,BIRLESIM_median_3
+Gelecek 6 ayın BİLEŞİK enflasyonu,Başlangıç sonrası 6 ayın bileşiği (yıllık enflasyon DEĞİLDİR),20.00195135233087,2026-09 → 2027-02,alternatif1,BIRLESIM_median_3
+Gelecek 12 ayın BİLEŞİK enflasyonu,Başlangıç sonrası 12 ayın bileşiği,47.15015417342134,2026-09 → 2027-08,alternatif1,BIRLESIM_median_3
+Temmuz–Aralık 2026 bileşik değişimi (2. dönem),2 ay gerçekleşme + 4 ay tahmin,19.637499481736413,2026-07 → 2026-12,alternatif1,BIRLESIM_median_3
+Ocak–Haziran 2027 bileşik değişimi (1. dönem),Tamamı tahmin (takvim yarıyılı),21.364916577428442,2027-01 → 2027-06,alternatif1,BIRLESIM_median_3
+2027-02 YILLIK enflasyonu,12 aylık geriye dönük değişim (6 aylık bileşik DEĞİLDİR),42.00951646298602,2026-03 → 2027-02,alternatif1,BIRLESIM_median_3
+2026 yılsonu enflasyonu (Ara 2026/Ara 2025),"Gerçekleşmiş YTD (%24.0081, 2026-08) + 4 aylık tahmin",39.91943176200925,2026-01 → 2026-12,alternatif2,LightGBM_wtum
+Gelecek 6 ayın BİLEŞİK enflasyonu,Başlangıç sonrası 6 ayın bileşiği (yıllık enflasyon DEĞİLDİR),19.843753614038384,2026-09 → 2027-02,alternatif2,LightGBM_wtum
+Gelecek 12 ayın BİLEŞİK enflasyonu,Başlangıç sonrası 12 ayın bileşiği,45.86232723881634,2026-09 → 2027-08,alternatif2,LightGBM_wtum
+Temmuz–Aralık 2026 bileşik değişimi (2. dönem),2 ay gerçekleşme + 4 ay tahmin,19.637499481736413,2026-07 → 2026-12,alternatif2,LightGBM_wtum
+Ocak–Haziran 2027 bileşik değişimi (1. dönem),Tamamı tahmin (takvim yarıyılı),21.204922051554156,2027-01 → 2027-06,alternatif2,LightGBM_wtum
+2027-02 YILLIK enflasyonu,12 aylık geriye dönük değişim (6 aylık bileşik DEĞİLDİR),41.82230630459041,2026-03 → 2027-02,alternatif2,LightGBM_wtum

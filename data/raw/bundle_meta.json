@@ -1,0 +1,64 @@
+{
+  "sources": [
+    {
+      "name": "openapi",
+      "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/openapi.json",
+      "status": "blocked",
+      "http_code": null,
+      "fetched_at": "2026-09-08T06:48:03.630828+00:00",
+      "sha256": "",
+      "n_bytes": 0,
+      "cache_path": "",
+      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/openapi.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+    },
+    {
+      "name": "meta",
+      "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/meta",
+      "status": "blocked",
+      "http_code": null,
+      "fetched_at": "2026-09-08T06:48:03.933948+00:00",
+      "sha256": "",
+      "n_bytes": 0,
+      "cache_path": "",
+      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/meta (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+    },
+    {
+      "name": "tufe[offset=0]",
+      "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/tufe",
+      "status": "blocked",
+      "http_code": null,
+      "fetched_at": "2026-09-08T06:48:04.237946+00:00",
+      "sha256": "",
+      "n_bytes": 0,
+      "cache_path": "",
+      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/tufe?limit=1000&offset=0&sort=asc (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+    },
+    {
+      "name": "upstream_monthly",
+      "url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
+      "status": "ok",
+      "http_code": 200,
+      "fetched_at": "2026-09-08T06:48:04.538018+00:00",
+      "sha256": "859a40a9e6aed3fccc188ff99ab562c9c21961e540708070fa178f5f9d6ad697",
+      "n_bytes": 74913,
+      "cache_path": "/home/user/TUFE_tahmin/data/raw/tufe_upstream.json",
+      "detail": ""
+    },
+    {
+      "name": "upstream_items",
+      "url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
+      "status": "ok",
+      "http_code": 200,
+      "fetched_at": "2026-09-08T06:48:05.495442+00:00",
+      "sha256": "535031235df9a17a2f424541c35630f9efaa5124d45573d9c42130b9de474d37",
+      "n_bytes": 576031,
+      "cache_path": "/home/user/TUFE_tahmin/data/raw/GRETL_TUFE.csv",
+      "detail": ""
+    }
+  ],
+  "api_meta": null,
+  "api_openapi_endpoints": [],
+  "cutoff": "2026-08",
+  "provenance": "upstream",
+  "written_at": "2026-09-08T06:48:05.615190+00:00"
+}

@@ -1,0 +1,28 @@
+# KKTC TÜFE Tahmin Sistemi — sabitlenmiş bağımlılıklar
+# (bu sürümlerle çalıştırılıp doğrulanmıştır; bkz. artifacts/manifest_*.json)
+
+numpy==2.4.6
+pandas==3.0.5
+scipy==1.17.1
+scikit-learn==1.9.0
+statsmodels==0.15.0
+lightgbm==4.7.0
+matplotlib==3.11.1
+pyarrow==25.0.1
+openpyxl==3.1.5
+tabulate==0.10.0
+Jinja2==3.1.6
+PyYAML==6.0.3
+requests==2.34.2
+pytest==9.1.1
+
+# --- TimesFM 3 (isteğe bağlı; ağ erişimi gerektirir) ---------------------------
+# Kod Apache-2.0'dır. TimesFM 3.0 ÖN EĞİTİMLİ AĞIRLIKLARI ayrı bir
+# "timesfm-non-commercial-license-v1.0" lisansı altındadır ve ticari/üretim
+# kullanımına KAPALIDIR. Ağırlıklar huggingface.co üzerinden çekilir.
+#
+#   pip install torch==2.14.0
+#   pip install "timesfm[torch]==3.0.1"
+#   # TimesFM 3.0 arayüzü (timesfm3) PyPI çarkında bulunmayabilir; resmî depodan:
+#   #   pip install "git+https://github.com/google-research/timesfm.git"
+#   # ağırlık: google/timesfm-3.0-pytorch

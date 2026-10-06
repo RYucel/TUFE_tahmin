@@ -1,0 +1,120 @@
+{
+  "winner": "BIRLESIM_mean_3",
+  "score": 7.850868302818804,
+  "rule": "En iyi skora göre göreli farkı %2'den küçük adaylar berabere sayıldı; ardından basitlik, sonra hesaplama maliyeti.",
+  "tied_with": [
+    "BIRLESIM_median_3"
+  ],
+  "complexity_rank": 9,
+  "runtime_sec": NaN,
+  "weights": {
+    "yearend": 0.6,
+    "c6": 0.3,
+    "c12": 0.1
+  },
+  "dev_end": "2024-08",
+  "n_candidates": 25,
+  "alternatives": [
+    "BIRLESIM_median_3",
+    "LightGBM_wtum"
+  ],
+  "ensemble_members": [
+    "LightGBM_wtum",
+    "Ridge_wtum",
+    "SARIMA_w60"
+  ],
+  "frozen_at": "2026-09-08T06:29:13.818575+00:00",
+  "notes": "Seçim yalnızca geliştirme doğrulaması skorlarıyla yapılmıştır. Nihai holdout bu aşamada hiç kullanılmamıştır.",
+  "frozen_extra": {
+    "kazanan_yapilandirma": {
+      "model": "BIRLESIM_mean_3",
+      "aile": "ensemble",
+      "pencere": "üye modellerin kendi pencereleri",
+      "pencere_ay": null,
+      "donusum": "log"
+    },
+    "alternatifler": [
+      "BIRLESIM_median_3",
+      "LightGBM_wtum"
+    ],
+    "birlesim": {
+      "uyeler": [
+        "LightGBM_wtum",
+        "Ridge_wtum",
+        "SARIMA_w60"
+      ],
+      "olcek": "log_monthly",
+      "yontemler": [
+        "mean",
+        "median"
+      ]
+    },
+    "kalibrasyon": {
+      "method": "conformal_absolute",
+      "levels": [
+        0.8,
+        0.95
+      ],
+      "min_samples": {
+        "0.8": 10,
+        "0.95": 20
+      },
+      "max_history": 60,
+      "update": "expanding"
+    },
+    "mase": {
+      "reference": "seasonal_naive_12",
+      "min_denominator_obs": 8
+    },
+    "aday_listesi": [
+      "naive_son_ay",
+      "naive_mevsimsel_12",
+      "ortalama_3ay",
+      "ortalama_6ay",
+      "ortalama_12ay",
+      "ETS_damped_seasonal_w60",
+      "AutoTheta_w60",
+      "ETS_damped_seasonal_w120",
+      "AutoTheta_w120",
+      "ETS_damped_seasonal_wtum",
+      "AutoTheta_wtum",
+      "SARIMA_w60",
+      "SARIMA_w120",
+      "SARIMA_wtum",
+      "UCM_llt_seasonal_w120",
+      "UCM_llt_seasonal_wtum",
+      "Ridge_w120",
+      "LightGBM_w120",
+      "Ridge_wtum",
+      "LightGBM_wtum",
+      "ElasticNet_wtum",
+      "Ridge_sepet_wtum",
+      "LightGBM_sepet_wtum"
+    ],
+    "timesfm_durumu": {
+      "available": false,
+      "detail": "TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co erişimi engellenmiş görünüyor; TimesFM 3 ÇALIŞTIRILAMAMIŞTIR.",
+      "package_version": "3.0.1",
+      "code_import": "başarılı",
+      "weights_ref": "google/timesfm-3.0-pytorch",
+      "weights_revision": null,
+      "weights_local_path": null,
+      "weights_license": "timesfm-non-commercial-license-v1.0 (ticari/üretim kullanımı yasak)",
+      "code_license": "Apache-2.0",
+      "device": "cpu",
+      "quantile_grid": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "supports_95": false
+    },
+    "basitlik_notu": "Basitlik sırası (küçük=daha basit): 0 referans, 2 ETS/Theta, 3 UCM, 4 SARIMA, 5 Ridge/ElasticNet, 6 LightGBM, 7 sepet destekli ML, 8 temel model (TimesFM). Bu sıra sonuçlar görülmeden sabitlenmiştir."
+  }
+}

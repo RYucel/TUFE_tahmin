@@ -1,6 +1,6 @@
 {
   "asama": "data",
-  "zaman_utc": "2026-09-08T06:19:03.389306+00:00",
+  "zaman_utc": "2026-10-06T08:38:24.782174+00:00",
   "seed": 20260908,
   "config": {
     "project": {
@@ -21,7 +21,7 @@
       "upstream_monthly_url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
       "upstream_items_url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
       "raw_dir": "data/raw",
-      "cutoff": "2026-08",
+      "cutoff": "2026-09",
       "page_limit": 1000,
       "timeout_sec": 60,
       "tolerance": {
@@ -29,21 +29,21 @@
         "material_pp": 0.25
       },
       "expected": {
-        "n_monthly": 594,
+        "n_monthly": 595,
         "first": "1977-03",
-        "last": "2026-08",
-        "last_aylik": 3.0443,
-        "last_ytd": 24.0081,
-        "last_yillik": 37.6979,
+        "last": "2026-09",
+        "last_aylik": 3.3366,
+        "last_ytd": 28.1458,
+        "last_yillik": 35.0184,
         "items_first": "2015-01",
-        "items_last": "2026-08",
-        "items_n_months": 140
+        "items_last": "2026-09",
+        "items_n_months": 141
       }
     },
     "split": {
       "dev_end": "2024-08",
       "holdout_start_origin": "2024-08",
-      "holdout_end": "2026-08",
+      "holdout_end": "2026-09",
       "dev_origin_start": "2015-01",
       "subperiods": [
         {
@@ -164,14 +164,14 @@
     "timesfm": "3.0.1"
   },
   "donanim": {
-    "platform": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+    "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
     "python": "3.11.15",
     "processor": "x86_64",
     "cpu_count": 4,
     "ram_gb": 16.9,
     "gpu": "yok (CPU)"
   },
-  "tepe_bellek_mb": 618.8,
+  "tepe_bellek_mb": 601.8,
   "determinizm_notu": "Sabit seed kullanılmıştır. LightGBM/BLAS iş parçacığı sayısı ve donanım farklılıkları nedeniyle son basamak düzeyinde tam determinizm garanti edilmez.",
   "veri_kaynaklari": [
     {
@@ -179,7 +179,7 @@
       "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/openapi.json",
       "status": "blocked",
       "http_code": null,
-      "fetched_at": "2026-09-08T05:48:02.594699+00:00",
+      "fetched_at": "2026-10-06T08:37:56.233574+00:00",
       "sha256": "",
       "n_bytes": 0,
       "cache_path": "",
@@ -190,7 +190,7 @@
       "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/meta",
       "status": "blocked",
       "http_code": null,
-      "fetched_at": "2026-09-08T05:48:02.816635+00:00",
+      "fetched_at": "2026-10-06T08:37:56.490445+00:00",
       "sha256": "",
       "n_bytes": 0,
       "cache_path": "",
@@ -201,7 +201,7 @@
       "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/tufe",
       "status": "blocked",
       "http_code": null,
-      "fetched_at": "2026-09-08T05:48:03.090397+00:00",
+      "fetched_at": "2026-10-06T08:37:56.779782+00:00",
       "sha256": "",
       "n_bytes": 0,
       "cache_path": "",
@@ -212,9 +212,9 @@
       "url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
       "status": "ok",
       "http_code": 200,
-      "fetched_at": "2026-09-08T05:48:03.564387+00:00",
-      "sha256": "859a40a9e6aed3fccc188ff99ab562c9c21961e540708070fa178f5f9d6ad697",
-      "n_bytes": 74913,
+      "fetched_at": "2026-10-06T08:37:57.178161+00:00",
+      "sha256": "ab578568bb02671e97dba2114d7fb13987ed397805691060a8c0d7022d542ec7",
+      "n_bytes": 75042,
       "cache_path": "/home/user/TUFE_tahmin/data/raw/tufe_upstream.json",
       "detail": ""
     },
@@ -223,9 +223,9 @@
       "url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
       "status": "ok",
       "http_code": 200,
-      "fetched_at": "2026-09-08T05:48:04.480545+00:00",
-      "sha256": "535031235df9a17a2f424541c35630f9efaa5124d45573d9c42130b9de474d37",
-      "n_bytes": 576031,
+      "fetched_at": "2026-10-06T08:37:57.694550+00:00",
+      "sha256": "4f8338a9032ea1ded1f97d0479b9b15e45c57ee4de99828b3312efb44b34435d",
+      "n_bytes": 580271,
       "cache_path": "/home/user/TUFE_tahmin/data/raw/GRETL_TUFE.csv",
       "detail": ""
     }
@@ -238,7 +238,7 @@
       "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/openapi.json",
       "status": "blocked",
       "http_code": null,
-      "fetched_at": "2026-09-08T05:48:02.594699+00:00",
+      "fetched_at": "2026-10-06T08:37:56.233574+00:00",
       "sha256": "",
       "n_bytes": 0,
       "cache_path": "",
@@ -249,7 +249,7 @@
       "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/meta",
       "status": "blocked",
       "http_code": null,
-      "fetched_at": "2026-09-08T05:48:02.816635+00:00",
+      "fetched_at": "2026-10-06T08:37:56.490445+00:00",
       "sha256": "",
       "n_bytes": 0,
       "cache_path": "",
@@ -260,7 +260,7 @@
       "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/tufe",
       "status": "blocked",
       "http_code": null,
-      "fetched_at": "2026-09-08T05:48:03.090397+00:00",
+      "fetched_at": "2026-10-06T08:37:56.779782+00:00",
       "sha256": "",
       "n_bytes": 0,
       "cache_path": "",

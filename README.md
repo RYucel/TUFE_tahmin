@@ -5,8 +5,8 @@ KKTC Tüketici Fiyat Endeksi (TÜFE) verisini kullanarak aday tahmin modellerini
 bir kuralla seçen ve seçilen yapılandırmayla gelecek 12 ayı tahmin eden,
 tekrarlanabilir bir Python uygulaması.
 
-Bu çalışma için **veri kesimi Ağustos 2026**, **tahmin dönemi Eylül 2026 –
-Ağustos 2027**'dir.
+Bu çalışma için **veri kesimi Eylül 2026**, **tahmin dönemi Ekim 2026 –
+Eylül 2027**'dir.
 
 ---
 
@@ -15,8 +15,8 @@ Ağustos 2027**'dir.
 | # | Hedef | Tanım |
 |---|-------|-------|
 | 1 | **Yılsonu enflasyonu** | Aralık 2026'nın Aralık 2025'e göre değişimi |
-| 2 | **Gelecek 6 ayın bileşik enflasyonu** | Eylül 2026 – Şubat 2027 |
-| 3 | **Gelecek 12 ayın bileşik enflasyonu** | Eylül 2026 – Ağustos 2027 |
+| 2 | **Gelecek 6 ayın bileşik enflasyonu** | Ekim 2026 – Mart 2027 |
+| 3 | **Gelecek 12 ayın bileşik enflasyonu** | Ekim 2026 – Eylül 2027 |
 | 4 | Aylık ve yıllık enflasyon | Her ay için |
 
 Ek çıktılar: Temmuz–Aralık 2026 bileşik değişimi (2 ay gerçekleşme + 4 ay
@@ -68,7 +68,7 @@ python run.py data        # veri indirme, önbellek, kalite denetimi, manifest
 python run.py backtest    # geliştirme doğrulaması (kayan başlangıç)
 python run.py select      # seçim + DONDURULMUŞ seçim dosyası
 python run.py evaluate    # nihai holdout (dondurulmuş dosya olmadan çalışmaz)
-python run.py forecast    # Eylül 2026 – Ağustos 2027 tahmini + arşiv
+python run.py forecast    # Ekim 2026 – Eylül 2027 tahmini + arşiv
 python run.py report      # grafikler + Türkçe HTML/Markdown rapor + Excel
 python run.py all         # hepsi, sırayla
 ```
@@ -98,9 +98,9 @@ tablosuna ve rapora **açıkça** yazılır. Kaynak sessizce değiştirilmez.
 
 Kapsam (bu çalışmada doğrulanmıştır):
 
-* Ana seri: **Mart 1977 – Ağustos 2026, 594 aylık kayıt**
-* Sepet madde fiyatları: **Ocak 2015 – Ağustos 2026, 520 kalem × 140 ay**
-* Ağustos 2026: aylık %3,0443 · YTD %24,0081 · yıllık %37,6979
+* Ana seri: **Mart 1977 – Eylül 2026, 595 aylık kayıt**
+* Sepet madde fiyatları: **Ocak 2015 – Eylül 2026, 520 kalem × 141 ay**
+* Eylül 2026: aylık %3,3366 · YTD %28,1458 · yıllık %35,0184
 
 ## Birim sözleşmesi
 
@@ -125,7 +125,7 @@ monoton artması gerekmez).
 
 * **Geliştirme doğrulaması:** Ocak 2015 – Ağustos 2024 içinde *tamamlanmış*
   hedefler, kayan başlangıçlı. Rastgele eğitim/test bölmesi yoktur.
-* **Nihai holdout:** Eylül 2024 – Ağustos 2026 (24 ay). Ağustos 2024
+* **Nihai holdout:** Eylül 2024 – Eylül 2026 (25 ay). Ağustos 2024
   başlangıcından itibaren ay ay ilerlenir. Holdout açılmadan önce model,
   pencere, dönüşüm, hiperparametre, özellik, birleşim üyeleri/ağırlıkları,
   seçim metriği, eşitlik kuralı ve aralık kalibrasyonu **dondurulur**.

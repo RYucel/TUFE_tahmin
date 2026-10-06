@@ -23,7 +23,7 @@
     "Ridge_wtum",
     "SARIMA_w60"
   ],
-  "frozen_at": "2026-09-08T06:29:13.818575+00:00",
+  "frozen_at": "2026-10-06T08:56:10.167749+00:00",
   "notes": "Seçim yalnızca geliştirme doğrulaması skorlarıyla yapılmıştır. Nihai holdout bu aşamada hiç kullanılmamıştır.",
   "frozen_extra": {
     "kazanan_yapilandirma": {

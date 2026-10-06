@@ -192,7 +192,7 @@ md(r"""
 
 # KKTC TÜFE Tahmin Sistemi — Tam Analiz ve Tahmin Defteri (Google Colab)
 
-**Veri kesimi:** Ağustos 2026 · **Tahmin dönemi:** Eylül 2026 – Ağustos 2027
+**Veri kesimi:** Eylül 2026 · **Tahmin dönemi:** Ekim 2026 – Eylül 2027
 
 Bu defter, depodaki üretim boru hattının (`run.py`) tamamını Colab'de çalıştırır ve
 **yerel ortamda çalıştırılamayan TimesFM 3.0'ı da karşılaştırmaya dâhil eder**
@@ -213,13 +213,13 @@ Bu defter, depodaki üretim boru hattının (`run.py`) tamamını Colab'de çal�
 | 7 | Model seçimi ve **seçimin dondurulması** |
 | 8 | Nihai holdout testi (yalnızca denetim) |
 | 9 | Belirsizlik aralıkları ve kapsama |
-| 10 | Eylül 2026 – Ağustos 2027 tahmini |
+| 10 | Ekim 2026 – Eylül 2027 tahmini |
 | 11 | Grafikler ve Türkçe rapor |
 | 12 | Araştırma vs. üretim lisansı ayrımı, çıktıların indirilmesi |
 
 ## Yöntemin değişmeyen kuralları
 
-* **Seçim yalnızca geliştirme skoruyla yapılır.** Nihai holdout (Eyl 2024 – Ağu 2026)
+* **Seçim yalnızca geliştirme skoruyla yapılır.** Nihai holdout (Eyl 2024 – Eyl 2026)
   yalnızca performansı denetler; test kazananına bakılarak seçim değiştirilmez.
 * Seçim skoru sonuçlar görülmeden sabitlenmiştir:
   `S = 0,60·MAE_yılsonu + 0,30·MAE_6ay + 0,10·MAE_12ay` (yüzde puan).
@@ -259,7 +259,7 @@ TIMESFM_CALISTIR = True  #@param {type:"boolean"}
 TIMESFM_CTX = [512, 1024]
 TIMESFM_SEPET_VARYANTI = True #@param {type:"boolean"}
 
-VERI_KESIMI = "2026-08" #@param {type:"string"}
+VERI_KESIMI = "2026-09" #@param {type:"string"}
 UFUK = 12
 
 print(f"Hızlı mod: {HIZLI_MOD} · TimesFM: {TIMESFM_CALISTIR} · kesim: {VERI_KESIMI}")
@@ -954,7 +954,7 @@ print("Yüksek kapsama + çok geniş aralık = iyi kalibrasyon DEĞİL, aşırı
 # ---------------------------------------------------------------- 10. tahmin
 md(r"""
 ---
-## 10. Nihai tahmin: Eylül 2026 – Ağustos 2027
+## 10. Nihai tahmin: Ekim 2026 – Eylül 2027
 
 Geliştirmede seçilmiş yapılandırma, veri kesimine kadar yeniden eğitilir.
 **Seçilmiş eğitim penceresi korunur** (son 60 ay kazandıysa tüm geçmişe geçilmez).

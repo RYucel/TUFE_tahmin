@@ -20,28 +20,28 @@ data:
   upstream_monthly_url: "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json"
   upstream_items_url: "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv"
   raw_dir: "data/raw"
-  cutoff: "2026-08"          # veri kesimi (dahil)
+  cutoff: "2026-09"          # veri kesimi (dahil)
   page_limit: 1000
   timeout_sec: 60
   # Doğrulama toleransları (yüzde puan)
   tolerance:
     rounding_pp: 0.02        # yuvarlama kaynaklı kabul edilebilir fark
     material_pp: 0.25        # bunun üzeri "gerçek uyuşmazlık" sayılır
-  expected:                  # plan aşamasında doğrulanan başlangıç kontrolleri
-    n_monthly: 594
+  expected:                  # kesim ayının resmî bülteninden doğrulanan kontroller
+    n_monthly: 595
     first: "1977-03"
-    last: "2026-08"
-    last_aylik: 3.0443
-    last_ytd: 24.0081
-    last_yillik: 37.6979
+    last: "2026-09"
+    last_aylik: 3.3366
+    last_ytd: 28.1458
+    last_yillik: 35.0184
     items_first: "2015-01"
-    items_last: "2026-08"
-    items_n_months: 140
+    items_last: "2026-09"
+    items_n_months: 141
 
 split:
   dev_end: "2024-08"         # geliştirme doğrulamasında hedefler bu aya kadar tamamlanmış olmalı
   holdout_start_origin: "2024-08"   # nihai testin ilk tahmin başlangıcı
-  holdout_end: "2026-08"     # nihai testte puanlanan son hedef ayı
+  holdout_end: "2026-09"     # nihai testte puanlanan son hedef ayı
   dev_origin_start: "2015-01"
   subperiods:
     - {name: "2015-2020", start: "2015-01", end: "2020-12"}

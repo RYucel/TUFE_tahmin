@@ -1,6 +1,6 @@
 {
   "asama": "evaluate",
-  "zaman_utc": "2026-09-08T06:31:36.015628+00:00",
+  "zaman_utc": "2026-10-06T09:00:37.581040+00:00",
   "seed": 20260908,
   "config": {
     "project": {
@@ -21,7 +21,7 @@
       "upstream_monthly_url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
       "upstream_items_url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
       "raw_dir": "data/raw",
-      "cutoff": "2026-08",
+      "cutoff": "2026-09",
       "page_limit": 1000,
       "timeout_sec": 60,
       "tolerance": {
@@ -29,21 +29,21 @@
         "material_pp": 0.25
       },
       "expected": {
-        "n_monthly": 594,
+        "n_monthly": 595,
         "first": "1977-03",
-        "last": "2026-08",
-        "last_aylik": 3.0443,
-        "last_ytd": 24.0081,
-        "last_yillik": 37.6979,
+        "last": "2026-09",
+        "last_aylik": 3.3366,
+        "last_ytd": 28.1458,
+        "last_yillik": 35.0184,
         "items_first": "2015-01",
-        "items_last": "2026-08",
-        "items_n_months": 140
+        "items_last": "2026-09",
+        "items_n_months": 141
       }
     },
     "split": {
       "dev_end": "2024-08",
       "holdout_start_origin": "2024-08",
-      "holdout_end": "2026-08",
+      "holdout_end": "2026-09",
       "dev_origin_start": "2015-01",
       "subperiods": [
         {
@@ -164,17 +164,17 @@
     "timesfm": "3.0.1"
   },
   "donanim": {
-    "platform": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+    "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
     "python": "3.11.15",
     "processor": "x86_64",
     "cpu_count": 4,
     "ram_gb": 16.9,
     "gpu": "yok (CPU)"
   },
-  "tepe_bellek_mb": 844.7,
+  "tepe_bellek_mb": 818.7,
   "determinizm_notu": "Sabit seed kullanılmıştır. LightGBM/BLAS iş parçacığı sayısı ve donanım farklılıkları nedeniyle son basamak düzeyinde tam determinizm garanti edilmez.",
   "dondurulmus_secim": "BIRLESIM_mean_3",
-  "n_baslangic": 25,
-  "sure_sn": 136.3,
+  "n_baslangic": 26,
+  "sure_sn": 257.9,
   "not": "Nihai test yalnızca performansı DENETLER. Test kazananına bakılarak seçilmiş model değiştirilmemiştir."
 }

@@ -8,18 +8,18 @@ Aylar sıralı mı,GEÇTİ,,
 Ana seri kesintisiz mi,GEÇTİ,Eksik ay yok,0
 Aylık değişimde eksik/sayısal olmayan,GEÇTİ,0 kayıt,0
 Aylık değişim > -%100,GEÇTİ,0 kayıt log dönüşümü için geçersiz,0
-Yıllık oran tutarlılığı,UYARI,"583 kayıt; 451 tanesi yuvarlama toleransı içinde (<= 0.02 pp); 28 tanesi maddi fark (> 0.25 pp); en büyük fark 3.1371 pp @ 2001-06. Farklar düzeltilmedi, olduğu gibi raporlandı.",3.1371
-YTD oran tutarlılığı,UYARI,"584 kayıt; 518 tanesi yuvarlama toleransı içinde (<= 0.02 pp); 1 tanesi maddi fark (> 0.25 pp); en büyük fark 0.2915 pp @ 2001-12. Farklar düzeltilmedi, olduğu gibi raporlandı.",0.2915
-Kayıt sayısı,GEÇTİ,"beklenen 594, bulunan 594",594
+Yıllık oran tutarlılığı,UYARI,"584 kayıt; 452 tanesi yuvarlama toleransı içinde (<= 0.02 pp); 28 tanesi maddi fark (> 0.25 pp); en büyük fark 3.1371 pp @ 2001-06. Farklar düzeltilmedi, olduğu gibi raporlandı.",3.1371
+YTD oran tutarlılığı,UYARI,"585 kayıt; 519 tanesi yuvarlama toleransı içinde (<= 0.02 pp); 1 tanesi maddi fark (> 0.25 pp); en büyük fark 0.2915 pp @ 2001-12. Farklar düzeltilmedi, olduğu gibi raporlandı.",0.2915
+Kayıt sayısı,GEÇTİ,"beklenen 595, bulunan 595",595
 Seri başlangıcı,GEÇTİ,"beklenen 1977-03, bulunan 1977-03",1977-03
-Seri sonu (kesim),GEÇTİ,"beklenen 2026-08, bulunan 2026-08",2026-08
-Son ay aylık %,GEÇTİ,"beklenen 3.0443, bulunan 3.0443",3.0443
-Son ay YTD %,GEÇTİ,"beklenen 24.0081, bulunan 24.0081",24.0081
-Son ay yıllık %,GEÇTİ,"beklenen 37.6979, bulunan 37.6979",37.6979
-Sepet kapsamı,BİLGİ,520 kalem × 140 ay (2015-01–2026-08),520x140
-Sepet dönem kontrolü,GEÇTİ,beklenen 2015-01–2026-08 / 140 ay,2015-01–2026-08 / 140
+Seri sonu (kesim),GEÇTİ,"beklenen 2026-09, bulunan 2026-09",2026-09
+Son ay aylık %,GEÇTİ,"beklenen 3.3366, bulunan 3.3366",3.3366
+Son ay YTD %,GEÇTİ,"beklenen 28.1458, bulunan 28.1458",28.1458
+Son ay yıllık %,GEÇTİ,"beklenen 35.0184, bulunan 35.0184",35.0184
+Sepet kapsamı,BİLGİ,520 kalem × 141 ay (2015-01–2026-09),520x141
+Sepet dönem kontrolü,GEÇTİ,beklenen 2015-01–2026-09 / 141 ay,2015-01–2026-09 / 141
 Sepet eksik değer,GEÇTİ,0 boş hücre (0.000%),0
-Sepet sıfır değer,UYARI,4341 sıfır hücre,4341
+Sepet sıfır değer,UYARI,4378 sıfır hücre,4378
 Tamamen boş kalem,GEÇTİ,0 kalem,0
 Sepet iç kesinti (seri ortasında boşluk),GEÇTİ,0 kalemde seri ortasında boşluk var,0
 Olağandışı aylar,BİLGİ,"Şok ayları tahmin probleminin parçasıdır; silinmedi/kırpılmadı. En yüksek 3 ay: 1994-05: %25.50, 1985-08: %22.18, 1994-03: %22.05",25.5045

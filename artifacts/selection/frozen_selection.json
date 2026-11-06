@@ -23,7 +23,7 @@
     "Ridge_wtum",
     "SARIMA_w60"
   ],
-  "frozen_at": "2026-10-06T08:56:10.167749+00:00",
+  "frozen_at": "2026-11-06T07:03:35.527795+00:00",
   "notes": "Seçim yalnızca geliştirme doğrulaması skorlarıyla yapılmıştır. Nihai holdout bu aşamada hiç kullanılmamıştır.",
   "frozen_extra": {
     "kazanan_yapilandirma": {
@@ -93,9 +93,9 @@
     ],
     "timesfm_durumu": {
       "available": false,
-      "detail": "TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co erişimi engellenmiş görünüyor; TimesFM 3 ÇALIŞTIRILAMAMIŞTIR.",
-      "package_version": "3.0.1",
-      "code_import": "başarılı",
+      "detail": "TimesFM 3 kodu içe aktarılamadı: ModuleNotFoundError: No module named 'timesfm3'. Kurulum: pip install 'timesfm[torch]' veya pip install 'git+https://github.com/google-research/timesfm.git'",
+      "package_version": null,
+      "code_import": "başarısız",
       "weights_ref": "google/timesfm-3.0-pytorch",
       "weights_revision": null,
       "weights_local_path": null,

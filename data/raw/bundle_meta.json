@@ -3,45 +3,34 @@
     {
       "name": "openapi",
       "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/openapi.json",
-      "status": "blocked",
-      "http_code": null,
-      "fetched_at": "2026-10-06T08:37:56.233574+00:00",
-      "sha256": "",
-      "n_bytes": 0,
-      "cache_path": "",
-      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/openapi.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+      "status": "ok",
+      "http_code": 200,
+      "fetched_at": "2026-11-06T06:55:22.352137+00:00",
+      "sha256": "a1a862fc6db6739cf2486eb8e4278b0e1bbe2d8cc00474e37e3f85e66351d932",
+      "n_bytes": 17567,
+      "cache_path": "/home/user/TUFE_tahmin/data/raw/openapi.json",
+      "detail": ""
     },
     {
       "name": "meta",
       "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/meta",
-      "status": "blocked",
-      "http_code": null,
-      "fetched_at": "2026-10-06T08:37:56.490445+00:00",
-      "sha256": "",
-      "n_bytes": 0,
-      "cache_path": "",
-      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/meta (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+      "status": "ok",
+      "http_code": 200,
+      "fetched_at": "2026-11-06T06:55:22.857163+00:00",
+      "sha256": "4bd7919b7541e787fa496429503a5d80c831ce0292007cf55c0488d1e413b72a",
+      "n_bytes": 2002,
+      "cache_path": "/home/user/TUFE_tahmin/data/raw/meta.json",
+      "detail": ""
     },
     {
       "name": "tufe[offset=0]",
       "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/tufe",
-      "status": "blocked",
-      "http_code": null,
-      "fetched_at": "2026-10-06T08:37:56.779782+00:00",
-      "sha256": "",
-      "n_bytes": 0,
-      "cache_path": "",
-      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/tufe?limit=1000&offset=0&sort=asc (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
-    },
-    {
-      "name": "upstream_monthly",
-      "url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
       "status": "ok",
       "http_code": 200,
-      "fetched_at": "2026-10-06T08:37:57.178161+00:00",
-      "sha256": "ab578568bb02671e97dba2114d7fb13987ed397805691060a8c0d7022d542ec7",
-      "n_bytes": 75042,
-      "cache_path": "/home/user/TUFE_tahmin/data/raw/tufe_upstream.json",
+      "fetched_at": "2026-11-06T06:55:23.334643+00:00",
+      "sha256": "045f30fa4bcd6a6a0dfece7c4a125391df7ad4dd0766d8deb507199379332971",
+      "n_bytes": 77492,
+      "cache_path": "/home/user/TUFE_tahmin/data/raw/tufe_0.json",
       "detail": ""
     },
     {
@@ -49,16 +38,81 @@
       "url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
       "status": "ok",
       "http_code": 200,
-      "fetched_at": "2026-10-06T08:37:57.694550+00:00",
+      "fetched_at": "2026-11-06T06:55:24.174681+00:00",
       "sha256": "4f8338a9032ea1ded1f97d0479b9b15e45c57ee4de99828b3312efb44b34435d",
       "n_bytes": 580271,
       "cache_path": "/home/user/TUFE_tahmin/data/raw/GRETL_TUFE.csv",
       "detail": ""
     }
   ],
-  "api_meta": null,
-  "api_openapi_endpoints": [],
-  "cutoff": "2026-09",
-  "provenance": "upstream",
-  "written_at": "2026-10-06T08:37:57.949967+00:00"
+  "api_meta": {
+    "success": true,
+    "meta": {
+      "lastChecked": "2026-11-06T00:52:30.686Z",
+      "lastChanged": "2026-11-06T00:52:30.686Z",
+      "latestHeadline": "Tüketici Fiyat Endeksi - Ekim 2026",
+      "latestNewsUrl": "https://istatistik.gov.ct.tr/HABERLER/t252ketici-fiyat-endeksi-ekim-2026",
+      "latestPubDate": "Thu, 05 Nov 2026 11:38:00 GMT",
+      "archiveUrl": "https://istatistik.gov.ct.tr/Portals/39/TUFE_ARSIV_YUZDE_EKIM_2026_WEB.xls",
+      "recordCount": 596,
+      "startPeriod": "1977-03",
+      "endPeriod": "2026-10",
+      "dataSource": "kktc_tufe veri deposu (github.com/RYucel/kktc_tufe)",
+      "latestAvailablePeriod": "2026-10",
+      "officialSource": "KKTC Başbakanlık İstatistik Kurumu",
+      "tufeSourceUrl": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
+      "itemsCsvSourceUrl": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
+      "fallbackRssUrl": "https://istatistik.gov.ct.tr/HABERLER/rss/category/4213/haberler",
+      "updateSchedule": "Kaynak veri deposu her gün 20:00 UTC'de kontrol edilir; aylık TÜFE serisi ayın ilk 10 günü, kurum bülteni yayınlandıktan sonra (14:00 UTC) resmi siteden tazelenir.",
+      "deployedOn": "Cloudflare Edge Network",
+      "license": "MIT - Açık Kaynak",
+      "itemPrices": {
+        "totalItems": 520,
+        "totalMonths": 141,
+        "startPeriod": "2015-01",
+        "endPeriod": "2026-09",
+        "generatedAt": "2026-10-06T07:34:29.607Z",
+        "source": "KKTC Başbakanlık İstatistik Kurumu - Tüketici Fiyatları Endeksi Madde Fiyatları"
+      },
+      "minimumWage": {
+        "changeCount": 79,
+        "startPeriod": "1977-05",
+        "currentSince": "2026-07",
+        "currentAmount": 70893,
+        "currency": "TRY",
+        "seriesEnd": "2026-10",
+        "source": "KKTC Calisma ve Sosyal Guvenlik Bakanligi asgari ucret kararlari",
+        "note": "Brüt asgari ücret. Nominal tutarlar elle güncellenir; reel değerler API'nin TÜFE serisinden hesaplanır."
+      },
+      "dataFreshness": {
+        "status": "pending",
+        "tufeEnd": "2026-10",
+        "itemsEnd": "2026-09",
+        "itemsLagMonths": 1,
+        "note": "Genel TÜFE 2026-10 dönemine geçti, sepet madde fiyatları 2026-09 döneminde. Yeni GRETL_TUFE.csv kaynak depoya yüklendiğinde kapanır: https://github.com/RYucel/kktc_tufe"
+      }
+    }
+  },
+  "api_openapi_endpoints": [
+    "/api/v1/calculate",
+    "/api/v1/items",
+    "/api/v1/items/compare",
+    "/api/v1/items/{item}",
+    "/api/v1/latest",
+    "/api/v1/meta",
+    "/api/v1/periods",
+    "/api/v1/prices",
+    "/api/v1/stats",
+    "/api/v1/sync",
+    "/api/v1/tufe",
+    "/api/v1/tufe/{year}",
+    "/api/v1/tufe/{year}/{month}",
+    "/api/v1/wage",
+    "/api/v1/wage/latest",
+    "/api/v1/wage/real",
+    "/health"
+  ],
+  "cutoff": "2026-10",
+  "provenance": "api",
+  "written_at": "2026-11-06T06:55:24.265596+00:00"
 }

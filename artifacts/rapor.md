@@ -1,44 +1,42 @@
-# KKTC TÜFE Tahmin Raporu (veri kesimi: 2026-09)
+# KKTC TÜFE Tahmin Raporu (veri kesimi: 2026-10)
 
 **Seçilen model:** `BIRLESIM_mean_3` · aile: ensemble · eğitim penceresi: üye modellerin kendi pencereleri · dönüşüm: log
 **Geliştirme seçim skoru S = 7.8509 yüzde puan** (S = 0.6·MAE_yılsonu + 0.3·MAE_6ay + 0.1·MAE_12ay)
 **Seçim kuralı:** En iyi skora göre göreli farkı %2'den küçük adaylar berabere sayıldı; ardından basitlik, sonra hesaplama maliyeti.
-**Donduruldu:** 2026-10-06T08:56:10.167749+00:00 (nihai holdout açılmadan önce)
+**Donduruldu:** 2026-11-06T07:03:35.527795+00:00 (nihai holdout açılmadan önce)
 
 ## ⚠ Eksik zorunlu bileşen
 
-TimesFM 3 çalıştırılamadı: TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co erişimi engellenmiş görünüyor; TimesFM 3 ÇALIŞTIRILAMAMIŞTIR.
+TimesFM 3 çalıştırılamadı: TimesFM 3 kodu içe aktarılamadı: ModuleNotFoundError: No module named 'timesfm3'. Kurulum: pip install 'timesfm[torch]' veya pip install 'git+https://github.com/google-research/timesfm.git'
 Bu nedenle karşılaştırma **tamamlanmış sayılmaz**.
-
-> Veri kaynağı notu: API'ye ulaşılamadı; API'nin beslendiği yukarı akış deposu kullanıldı (`https://kktc-tufe-api.stevevaius.workers.dev` egress politikasınca engelli). Kullanılan kaynak API'nin beslendiği `https://github.com/RYucel/kktc_tufe` deposudur.
 
 ## Dönem tahminleri
 
 | olcu                                           | tanim                                                         |   deger_pct | donem             |
 |:-----------------------------------------------|:--------------------------------------------------------------|------------:|:------------------|
-| 2026 yılsonu enflasyonu (Ara 2026/Ara 2025)    | Gerçekleşmiş YTD (%28.1458, 2026-09) + 3 aylık tahmin         |     39.9335 | 2026-01 → 2026-12 |
-| Gelecek 6 ayın BİLEŞİK enflasyonu              | Başlangıç sonrası 6 ayın bileşiği (yıllık enflasyon DEĞİLDİR) |     19.7243 | 2026-10 → 2027-03 |
-| Gelecek 12 ayın BİLEŞİK enflasyonu             | Başlangıç sonrası 12 ayın bileşiği                            |     44.4867 | 2026-10 → 2027-09 |
-| Temmuz–Aralık 2026 bileşik değişimi (2. dönem) | 3 ay gerçekleşme + 3 ay tahmin                                |     19.6495 | 2026-07 → 2026-12 |
-| Ocak–Haziran 2027 bileşik değişimi (1. dönem)  | Tamamı tahmin (takvim yarıyılı)                               |     19.7585 | 2027-01 → 2027-06 |
-| 2027-02 YILLIK enflasyonu                      | 12 aylık geriye dönük değişim (6 aylık bileşik DEĞİLDİR)      |     42.0014 | 2026-03 → 2027-02 |
+| 2026 yılsonu enflasyonu (Ara 2026/Ara 2025)    | Gerçekleşmiş YTD (%29.5198, 2026-10) + 2 aylık tahmin         |     35.9154 | 2026-01 → 2026-12 |
+| Gelecek 6 ayın BİLEŞİK enflasyonu              | Başlangıç sonrası 6 ayın bileşiği (yıllık enflasyon DEĞİLDİR) |     18.1826 | 2026-11 → 2027-04 |
+| Gelecek 12 ayın BİLEŞİK enflasyonu             | Başlangıç sonrası 12 ayın bileşiği                            |     41.2062 | 2026-11 → 2027-10 |
+| Temmuz–Aralık 2026 bileşik değişimi (2. dönem) | 4 ay gerçekleşme + 2 ay tahmin                                |     16.2138 | 2026-07 → 2026-12 |
+| Ocak–Haziran 2027 bileşik değişimi (1. dönem)  | Tamamı tahmin (takvim yarıyılı)                               |     19.3592 | 2027-01 → 2027-06 |
+| 2027-02 YILLIK enflasyonu                      | 12 aylık geriye dönük değişim (6 aylık bileşik DEĞİLDİR)      |     37.6218 | 2026-03 → 2027-02 |
 
 ## Aylık tahminler
 
-| tarih   |   aylik_pct |   yillik_pct |   ytd_pct | ytd_kaynak         |   kumulatif_2026-09_sonrasi_pct | model           | veri_kesimi   |   aylik_lo80 |   aylik_hi80 |   aylik_lo95 |   aylik_hi95 | aralik_olcusu                                        |
+| tarih   |   aylik_pct |   yillik_pct |   ytd_pct | ytd_kaynak         |   kumulatif_2026-10_sonrasi_pct | model           | veri_kesimi   |   aylik_lo80 |   aylik_hi80 |   aylik_lo95 |   aylik_hi95 | aralik_olcusu                                        |
 |:--------|------------:|-------------:|----------:|:-------------------|--------------------------------:|:----------------|:--------------|-------------:|-------------:|-------------:|-------------:|:-----------------------------------------------------|
-| 2026-10 |     3.06124 |      37.6458 |  32.0686  | resmî YTD + tahmin |                         3.06124 | BIRLESIM_mean_3 | 2026-09       |     0.557259 |      5.56521 |     -4.66978 |      10.7923 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
-| 2026-11 |     2.89199 |      40.4848 |  35.8881  | resmî YTD + tahmin |                         6.04176 | BIRLESIM_mean_3 | 2026-09       |     0.23323  |      5.55076 |     -4.96849 |      10.7525 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
-| 2026-12 |     2.97703 |      39.9294 |  39.9335  | resmî YTD + tahmin |                         9.19866 | BIRLESIM_mean_3 | 2026-09       |     0.256775 |      5.69729 |     -5.08304 |      11.0371 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
-| 2027-01 |     3.25018 |      41.6795 |   3.25018 | tahmin             |                        12.7478  | BIRLESIM_mean_3 | 2026-09       |     0.744098 |      5.75625 |     -4.88571 |      11.3861 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
-| 2027-02 |     2.99143 |      42.0014 |   6.33884 | tahmin             |                        16.1206  | BIRLESIM_mean_3 | 2026-09       |     0.419148 |      5.56372 |     -5.41308 |      11.3959 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
-| 2027-03 |     3.10341 |      43.2852 |   9.63897 | tahmin             |                        19.7243  | BIRLESIM_mean_3 | 2026-09       |     0.40212  |      5.8047  |     -4.89767 |      11.1045 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
-| 2027-04 |     3.07194 |      41.1592 |  13.007   | tahmin             |                        23.4021  | BIRLESIM_mean_3 | 2026-09       |     0.471612 |      5.67227 |     -5.07628 |      11.2202 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
-| 2027-05 |     2.96097 |      42.3993 |  16.3531  | tahmin             |                        27.056   | BIRLESIM_mean_3 | 2026-09       |    -0.399684 |      6.32163 |     -5.1372  |      11.0591 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
-| 2027-06 |     2.9268  |      43.2905 |  19.7585  | tahmin             |                        30.7747  | BIRLESIM_mean_3 | 2026-09       |    -0.544358 |      6.39796 |     -5.21594 |      11.0695 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
-| 2027-07 |     3.06921 |      43.5261 |  23.4342  | tahmin             |                        34.7885  | BIRLESIM_mean_3 | 2026-09       |    -0.444151 |      6.58257 |     -5.00063 |      11.1391 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
-| 2027-08 |     3.7525  |      44.5125 |  28.066   | tahmin             |                        39.8464  | BIRLESIM_mean_3 | 2026-09       |     0.16018  |      7.34481 |     -4.43853 |      11.9435 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
-| 2027-09 |     3.31813 |      44.4867 |  32.3154  | tahmin             |                        44.4867  | BIRLESIM_mean_3 | 2026-09       |    -0.371303 |      7.00756 |     -4.89196 |      11.5282 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
+| 2026-11 |     2.21792 |      36.8709 |  32.3924  | resmî YTD + tahmin |                         2.21792 | BIRLESIM_mean_3 | 2026-10       |  -0.286058   |      4.7219  |     -5.5131  |      9.94893 | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
+| 2026-12 |     2.661   |      35.9114 |  35.9154  | resmî YTD + tahmin |                         4.93793 | BIRLESIM_mean_3 | 2026-10       |   0.00223276 |      5.31976 |     -5.19948 |     10.5215  | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
+| 2027-01 |     2.95632 |      37.2196 |   2.95632 | tahmin             |                         8.04023 | BIRLESIM_mean_3 | 2026-10       |   0.23606    |      5.67657 |     -5.10375 |     11.0164  | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
+| 2027-02 |     3.05917 |      37.6218 |   6.10592 | tahmin             |                        11.3454  | BIRLESIM_mean_3 | 2026-10       |   0.553008   |      5.56533 |     -5.07671 |     11.195   | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
+| 2027-03 |     3.09627 |      38.8564 |   9.39125 | tahmin             |                        14.7929  | BIRLESIM_mean_3 | 2026-10       |   0.523987   |      5.66856 |     -5.30824 |     11.5008  | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
+| 2027-04 |     2.95289 |      36.6381 |  12.6215  | tahmin             |                        18.1826  | BIRLESIM_mean_3 | 2026-10       |   0.2516     |      5.65418 |     -5.04819 |     10.954   | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
+| 2027-05 |     3.07549 |      37.9919 |  16.0851  | tahmin             |                        21.8173  | BIRLESIM_mean_3 | 2026-10       |   0.475163   |      5.67582 |     -5.07273 |     11.2237  | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
+| 2027-06 |     2.82045 |      38.7119 |  19.3592  | tahmin             |                        25.2531  | BIRLESIM_mean_3 | 2026-10       |  -0.540201   |      6.18111 |     -5.27772 |     10.9186  | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
+| 2027-07 |     2.89826 |      38.7096 |  22.8186  | tahmin             |                        28.8833  | BIRLESIM_mean_3 | 2026-10       |  -0.572896   |      6.36942 |     -5.24448 |     11.041   | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
+| 2027-08 |     3.27464 |      39.0197 |  26.8405  | tahmin             |                        33.1038  | BIRLESIM_mean_3 | 2026-10       |  -0.23872    |      6.788   |     -4.7952  |     11.3445  | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
+| 2027-09 |     3.08726 |      38.6842 |  30.7564  | tahmin             |                        37.213   | BIRLESIM_mean_3 | 2026-10       |  -0.505058   |      6.67958 |     -5.10377 |     11.2783  | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
+| 2027-10 |     2.91018 |      41.2062 |  34.5616  | tahmin             |                        41.2062  | BIRLESIM_mean_3 | 2026-10       |  -0.779253   |      6.59961 |     -5.29991 |     11.1203  | AYLIK yüzde değişim (bileşik dönem aralığı değildir) |
 
 ## Geliştirme sıralaması
 
@@ -74,56 +72,56 @@ Bu nedenle karşılaştırma **tamamlanmış sayılmaz**.
 
 | model                    | hedef   |   n |      MAE |     RMSE |         ME |     MAPE |   en_kotu_hata | en_kotu_donem   |      MASE |   MASE_payda_n |
 |:-------------------------|:--------|----:|---------:|---------:|-----------:|---------:|---------------:|:----------------|----------:|---------------:|
-| LightGBM_sepet_wtum      | c12     |  14 |  2.05278 |  2.4195  | -1.73814   |  5.32756 |        4.58944 | 2026-02         | 0.0995067 |            104 |
-| SARIMA_w120              | c12     |  14 |  3.70877 |  4.85317 | -1.65505   |  9.78192 |        9.43641 | 2026-09         | 0.179679  |            104 |
-| LightGBM_w120            | c12     |  14 |  5.62356 |  5.99646 |  5.62356   | 15.1091  |       10.4763  | 2026-09         | 0.27243   |            104 |
-| SARIMA_wtum              | c12     |  14 |  6.63584 |  8.80276 |  5.06898   | 17.9766  |       21.3155  | 2025-08         | 0.321555  |            104 |
-| Ridge_w120               | c12     |  14 |  6.68489 |  8.13815 |  6.68489   | 18.1398  |       16.8069  | 2025-08         | 0.323916  |            104 |
-| Ridge_sepet_wtum         | c12     |  14 |  7.09036 |  9.49559 |  5.41181   | 19.1432  |       20.5772  | 2025-10         | 0.34364   |            104 |
-| ElasticNet_wtum          | c12     |  14 |  7.89444 | 10.0377  |  7.88536   | 21.3731  |       21.2788  | 2025-08         | 0.382678  |            104 |
-| AutoTheta_wtum           | c12     |  14 |  8.51398 | 11.8668  |  7.12581   | 23.0651  |       29.4909  | 2025-08         | 0.412657  |            104 |
-| UCM_llt_seasonal_wtum    | c12     |  14 |  8.90678 | 12.9984  |  8.25858   | 24.2376  |       31.9624  | 2025-08         | 0.431699  |            104 |
-| ortalama_6ay             | c12     |  14 | 10.1272  | 13.3828  |  3.98205   | 27.1816  |       35.9428  | 2025-08         | 0.490793  |            104 |
-| ETS_damped_seasonal_wtum | c12     |  14 | 10.5588  | 14.1121  | 10.2533    | 28.5797  |       33.1641  | 2025-08         | 0.511807  |            104 |
-| ETS_damped_seasonal_w120 | c12     |  14 | 10.9352  | 12.8737  |  1.98612   | 29.267   |       27.2002  | 2026-09         | 0.529759  |            104 |
-| Ridge_wtum               | c12     |  14 | 11.0742  | 13.3587  | 11.0426    | 29.941   |       26.5945  | 2025-08         | 0.536798  |            104 |
-| ortalama_3ay             | c12     |  14 | 11.2799  | 13.8782  |  1.29469   | 30.0479  |       24.3939  | 2026-09         | 0.546571  |            104 |
-| AutoTheta_w120           | c12     |  14 | 11.5447  | 13.5667  |  4.07971   | 30.9675  |       30.4617  | 2026-09         | 0.559203  |            104 |
-| naive_mevsimsel_12       | c12     |  14 | 11.5617  | 15.4012  | 10.4592    | 30.9865  |       29.3362  | 2025-08         | 0.560617  |            104 |
-| ortalama_12ay            | c12     |  14 | 11.5617  | 15.4012  | 10.4592    | 30.9865  |       29.3362  | 2025-08         | 0.560617  |            104 |
-| UCM_llt_seasonal_w120    | c12     |  14 | 11.6661  | 13.5369  |  3.39441   | 31.3079  |       28.7396  | 2026-09         | 0.565183  |            104 |
-| AutoTheta_w60            | c12     |  14 | 12.0488  | 14.1149  |  4.84645   | 32.3301  |       27.1167  | 2026-09         | 0.583746  |            104 |
-| LightGBM_wtum            | c12     |  14 | 13.8089  | 16.0858  | 13.4619    | 37.3422  |       28.5006  | 2025-08         | 0.669139  |            104 |
-| BIRLESIM_median_3        | c12     |  14 | 13.8208  | 15.2848  | 13.8208    | 37.2693  |       22.2158  | 2025-08         | 0.669695  |            104 |
-| BIRLESIM_mean_3          | c12     |  14 | 14.4842  | 15.7088  | 14.4842    | 38.9875  |       24.6415  | 2025-08         | 0.701878  |            104 |
-| ETS_damped_seasonal_w60  | c12     |  14 | 14.7531  | 18.4927  |  3.03236   | 39.4783  |       38.938   | 2026-09         | 0.714725  |            104 |
-| naive_son_ay             | c12     |  14 | 17.4141  | 21.6184  |  3.16015   | 46.7838  |       52.6834  | 2026-09         | 0.84338   |            104 |
-| SARIMA_w60               | c12     |  14 | 19.2258  | 19.8732  | 19.2258    | 51.3549  |       30.9082  | 2026-09         | 0.931504  |            104 |
-| LightGBM_sepet_wtum      | c6      |  20 |  2.0613  |  2.5304  | -0.945199  | 12.0505  |        5.53682 | 2025-09         | 0.187968  |            114 |
-| Ridge_w120               | c6      |  20 |  2.43849 |  3.39172 |  2.09694   | 16.2303  |        8.58534 | 2025-02         | 0.22189   |            114 |
-| Ridge_sepet_wtum         | c6      |  20 |  2.54829 |  3.3103  |  0.813755  | 16.3041  |        6.97656 | 2025-02         | 0.23187   |            114 |
-| LightGBM_w120            | c6      |  20 |  2.78652 |  3.32033 |  2.35479   | 17.8329  |        7.52638 | 2026-03         | 0.25302   |            114 |
-| SARIMA_w120              | c6      |  20 |  3.07517 |  3.75454 | -0.581008  | 18.8172  |        9.84407 | 2026-03         | 0.279666  |            114 |
-| ElasticNet_wtum          | c6      |  20 |  3.1686  |  4.57423 |  2.60398   | 21.2007  |       12.1211  | 2025-02         | 0.288298  |            114 |
-| SARIMA_wtum              | c6      |  20 |  3.61636 |  4.99206 |  1.56134   | 23.6513  |       13.6152  | 2025-02         | 0.329342  |            114 |
-| UCM_llt_seasonal_wtum    | c6      |  20 |  3.86585 |  5.83623 |  2.48686   | 25.7709  |       16.3277  | 2025-02         | 0.352295  |            114 |
-| ortalama_12ay            | c6      |  20 |  3.99705 |  6.3342  |  3.15168   | 26.4162  |       15.9864  | 2025-02         | 0.364764  |            114 |
-| ETS_damped_seasonal_w120 | c6      |  20 |  4.14017 |  5.02467 |  0.609294  | 25.7386  |       11.8102  | 2026-03         | 0.375576  |            114 |
-| Ridge_wtum               | c6      |  20 |  4.14101 |  5.57661 |  3.63456   | 27.2433  |       13.5443  | 2025-02         | 0.3765    |            114 |
-| UCM_llt_seasonal_w120    | c6      |  20 |  4.35384 |  5.19696 |  0.98371   | 27.0622  |       12.2357  | 2026-03         | 0.395039  |            114 |
-| AutoTheta_wtum           | c6      |  20 |  4.39875 |  5.87698 |  1.98643   | 28.4816  |       16.1484  | 2025-02         | 0.400946  |            114 |
-| ETS_damped_seasonal_wtum | c6      |  20 |  4.57195 |  6.41041 |  3.08194   | 30.1126  |       17.4862  | 2025-02         | 0.416602  |            114 |
-| AutoTheta_w120           | c6      |  20 |  4.70999 |  5.80202 |  0.0978994 | 29.0194  |       15.4071  | 2026-03         | 0.428204  |            114 |
-| ortalama_6ay             | c6      |  20 |  4.87044 |  6.54817 |  0.942134  | 30.9266  |       18.5346  | 2025-02         | 0.443981  |            114 |
-| LightGBM_wtum            | c6      |  20 |  4.90154 |  6.59161 |  4.41919   | 32.1945  |       15.5608  | 2025-02         | 0.445652  |            114 |
-| BIRLESIM_median_3        | c6      |  20 |  4.93042 |  6.14002 |  4.8193    | 31.8504  |       12.4497  | 2025-02         | 0.447868  |            114 |
-| BIRLESIM_mean_3          | c6      |  20 |  5.19511 |  6.40737 |  5.15314   | 33.6553  |       13.5289  | 2025-02         | 0.471897  |            114 |
-| AutoTheta_w60            | c6      |  20 |  5.36093 |  6.51857 |  0.338015  | 33.7357  |       14.4882  | 2026-03         | 0.488144  |            114 |
-| ortalama_3ay             | c6      |  20 |  5.54941 |  6.64275 | -0.192503  | 34.2504  |       13.4435  | 2026-03         | 0.505323  |            114 |
-| ETS_damped_seasonal_w60  | c6      |  20 |  6.64392 |  8.21149 |  1.61857   | 41.267   |       18.0559  | 2026-03         | 0.603037  |            114 |
-| naive_mevsimsel_12       | c6      |  20 |  6.84007 |  9.32629 |  5.5565    | 41.7056  |       20.187   | 2025-04         | 0.623816  |            114 |
-| SARIMA_w60               | c6      |  20 |  7.47905 |  8.20512 |  7.47905   | 46.3792  |       16.7315  | 2026-03         | 0.679609  |            114 |
-| naive_son_ay             | c6      |  20 |  7.67104 |  9.20827 | -0.507876  | 46.6466  |       24.1893  | 2026-03         | 0.696743  |            114 |
+| LightGBM_sepet_wtum      | c12     |  15 |  2.00064 |  2.36037 | -1.53755   |  5.21449 |        4.58944 | 2026-02         | 0.0969423 |            104 |
+| SARIMA_w120              | c12     |  15 |  3.53314 |  4.6968  | -1.61634   |  9.33449 |        9.43641 | 2026-09         | 0.171141  |            104 |
+| LightGBM_w120            | c12     |  15 |  5.92789 |  6.36246 |  5.92789   | 16.0431  |       10.4763  | 2026-09         | 0.286897  |            104 |
+| SARIMA_wtum              | c12     |  15 |  6.59232 |  8.64345 |  5.12992   | 17.9181  |       21.3155  | 2025-08         | 0.319279  |            104 |
+| Ridge_w120               | c12     |  15 |  6.76823 |  8.12477 |  6.76823   | 18.4424  |       16.8069  | 2025-08         | 0.327734  |            104 |
+| Ridge_sepet_wtum         | c12     |  15 |  6.85819 |  9.22079 |  5.29155   | 18.5544  |       20.5772  | 2025-10         | 0.332284  |            104 |
+| ElasticNet_wtum          | c12     |  15 |  7.65969 |  9.76287 |  7.65121   | 20.7814  |       21.2788  | 2025-08         | 0.371171  |            104 |
+| AutoTheta_wtum           | c12     |  15 |  8.24254 | 11.5217  |  6.94691   | 22.3738  |       29.4909  | 2025-08         | 0.399374  |            104 |
+| UCM_llt_seasonal_wtum    | c12     |  15 |  8.7166  | 12.6545  |  8.11161   | 23.7753  |       31.9624  | 2025-08         | 0.422308  |            104 |
+| ortalama_6ay             | c12     |  15 |  9.78577 | 12.9935  |  4.05027   | 26.3232  |       35.9428  | 2025-08         | 0.474103  |            104 |
+| ETS_damped_seasonal_wtum | c12     |  15 | 10.2548  | 13.7213  |  9.96964   | 27.8172  |       33.1641  | 2025-08         | 0.496896  |            104 |
+| Ridge_wtum               | c12     |  15 | 10.7489  | 13.0045  | 10.7194    | 29.1252  |       26.5945  | 2025-08         | 0.520849  |            104 |
+| ETS_damped_seasonal_w120 | c12     |  15 | 10.823   | 12.6646  |  2.47055   | 29.0788  |       27.2002  | 2026-09         | 0.524073  |            104 |
+| naive_mevsimsel_12       | c12     |  15 | 10.8802  | 14.883   |  9.85121   | 29.176   |       29.3362  | 2025-08         | 0.527532  |            104 |
+| ortalama_12ay            | c12     |  15 | 10.8802  | 14.883   |  9.85121   | 29.176   |       29.3362  | 2025-08         | 0.527532  |            104 |
+| AutoTheta_w120           | c12     |  15 | 11.0975  | 13.166   |  4.13012   | 29.8244  |       30.4617  | 2026-09         | 0.53741   |            104 |
+| ortalama_3ay             | c12     |  15 | 11.3253  | 13.7587  |  2.00579   | 30.3238  |       24.3939  | 2026-09         | 0.548439  |            104 |
+| AutoTheta_w60            | c12     |  15 | 11.415   | 13.6521  |  4.69282   | 30.6591  |       27.1167  | 2026-09         | 0.55297   |            104 |
+| UCM_llt_seasonal_w120    | c12     |  15 | 11.6511  | 13.4073  |  3.93083   | 31.4006  |       28.7396  | 2026-09         | 0.564143  |            104 |
+| LightGBM_wtum            | c12     |  15 | 13.6956  | 15.8518  | 13.3717    | 37.16    |       28.5006  | 2025-08         | 0.663311  |            104 |
+| BIRLESIM_median_3        | c12     |  15 | 13.8531  | 15.2215  | 13.8531    | 37.5105  |       22.2158  | 2025-08         | 0.670864  |            104 |
+| BIRLESIM_mean_3          | c12     |  15 | 14.405   | 15.5596  | 14.405     | 38.9217  |       24.6415  | 2025-08         | 0.697666  |            104 |
+| ETS_damped_seasonal_w60  | c12     |  15 | 15.0333  | 18.524   |  4.09395   | 40.4582  |       38.938   | 2026-09         | 0.727784  |            104 |
+| naive_son_ay             | c12     |  15 | 17.6586  | 21.583   |  1.54407   | 47.6816  |       52.6834  | 2026-09         | 0.854667  |            104 |
+| SARIMA_w60               | c12     |  15 | 19.4114  | 20.0227  | 19.4114    | 52.125   |       30.9082  | 2026-09         | 0.939893  |            104 |
+| LightGBM_sepet_wtum      | c6      |  21 |  2.00305 |  2.47618 | -0.860282  | 11.7322  |        5.53682 | 2025-09         | 0.18276   |            115 |
+| Ridge_w120               | c6      |  21 |  2.54902 |  3.46911 |  2.22374   | 16.9089  |        8.58534 | 2025-02         | 0.232581  |            115 |
+| Ridge_sepet_wtum         | c6      |  21 |  2.59548 |  3.32156 |  0.943538  | 16.607   |        6.97656 | 2025-02         | 0.236635  |            115 |
+| LightGBM_w120            | c6      |  21 |  2.88079 |  3.40314 |  2.46962   | 18.4371  |        7.52638 | 2026-03         | 0.262258  |            115 |
+| SARIMA_w120              | c6      |  21 |  3.20458 |  3.87599 | -0.277493  | 19.6876  |        9.84407 | 2026-03         | 0.29222   |            115 |
+| ElasticNet_wtum          | c6      |  21 |  3.2058  |  4.54644 |  2.66806   | 21.3956  |       12.1211  | 2025-02         | 0.29221   |            115 |
+| SARIMA_wtum              | c6      |  21 |  3.60289 |  4.92575 |  1.64572   | 23.5415  |       13.6152  | 2025-02         | 0.328546  |            115 |
+| UCM_llt_seasonal_wtum    | c6      |  21 |  3.78088 |  5.71366 |  2.46756   | 25.1785  |       16.3277  | 2025-02         | 0.344815  |            115 |
+| ortalama_12ay            | c6      |  21 |  3.8981  |  6.19572 |  3.09299   | 25.7436  |       15.9864  | 2025-02         | 0.355966  |            115 |
+| Ridge_wtum               | c6      |  21 |  4.16112 |  5.53257 |  3.67879   | 27.3376  |       13.5443  | 2025-02         | 0.378952  |            115 |
+| ETS_damped_seasonal_w120 | c6      |  21 |  4.21343 |  5.05773 |  0.850693  | 26.2446  |       11.8102  | 2026-03         | 0.383054  |            115 |
+| AutoTheta_wtum           | c6      |  21 |  4.33547 |  5.77434 |  2.03802   | 28.0614  |       16.1484  | 2025-02         | 0.395564  |            115 |
+| UCM_llt_seasonal_w120    | c6      |  21 |  4.44784 |  5.25633 |  1.23819   | 27.7031  |       12.2357  | 2026-03         | 0.404489  |            115 |
+| ETS_damped_seasonal_wtum | c6      |  21 |  4.49802 |  6.29052 |  3.07896   | 29.5994  |       17.4862  | 2025-02         | 0.41025   |            115 |
+| ortalama_6ay             | c6      |  21 |  4.69282 |  6.3952  |  0.951575  | 29.8017  |       18.5346  | 2025-02         | 0.427932  |            115 |
+| AutoTheta_w120           | c6      |  21 |  4.8189  |  5.86446 |  0.426436  | 29.7712  |       15.4071  | 2026-03         | 0.439064  |            115 |
+| LightGBM_wtum            | c6      |  21 |  4.93089 |  6.54448 |  4.47151   | 32.344   |       15.5608  | 2025-02         | 0.449075  |            115 |
+| BIRLESIM_median_3        | c6      |  21 |  4.97847 |  6.13062 |  4.87264   | 32.1448  |       12.4497  | 2025-02         | 0.453067  |            115 |
+| BIRLESIM_mean_3          | c6      |  21 |  5.31993 |  6.48141 |  5.27996   | 34.4361  |       13.5289  | 2025-02         | 0.484335  |            115 |
+| AutoTheta_w60            | c6      |  21 |  5.35321 |  6.46184 |  0.569483  | 33.7146  |       14.4882  | 2026-03         | 0.488118  |            115 |
+| ortalama_3ay             | c6      |  21 |  5.52615 |  6.57606 |  0.0576638 | 34.1627  |       13.4435  | 2026-03         | 0.503863  |            115 |
+| ETS_damped_seasonal_w60  | c6      |  21 |  6.40185 |  8.02083 |  1.6158    | 39.7777  |       18.0559  | 2026-03         | 0.58129   |            115 |
+| naive_mevsimsel_12       | c6      |  21 |  6.64308 |  9.12062 |  5.42064   | 40.5439  |       20.187   | 2025-04         | 0.606183  |            115 |
+| SARIMA_w60               | c6      |  21 |  7.76873 |  8.5368  |  7.76873   | 48.3063  |       16.7315  | 2026-03         | 0.707818  |            115 |
+| naive_son_ay             | c6      |  21 |  8.04585 |  9.60506 |  0.256408  | 49.1647  |       24.1893  | 2026-03         | 0.732978  |            115 |
 | LightGBM_sepet_wtum      | yearend |   5 |  2.62041 |  3.06834 |  1.39019   |  5.48672 |        4.8902  | 2024-12         | 0.294321  |             29 |
 | Ridge_w120               | yearend |   5 |  3.39574 |  4.62619 |  3.05641   |  6.72873 |        7.95322 | 2024-12         | 0.382942  |             29 |
 | SARIMA_w120              | yearend |   5 |  3.55875 |  4.17263 |  1.51451   |  7.52326 |        6.00236 | 2024-12         | 0.399425  |             29 |
@@ -208,60 +206,60 @@ Bu nedenle karşılaştırma **tamamlanmış sayılmaz**.
 | geliştirme | yoy8    | %95      |  0.765432 |  81 |            65.3606  |        250.624   |       9.62928  | BIRLESIM_mean_3 |
 | geliştirme | yoy9    | %80      |  0.674157 |  89 |            25.1697  |        104.753   |      11.1638   | BIRLESIM_mean_3 |
 | geliştirme | yoy9    | %95      |  0.734177 |  79 |            68.323   |        306.48    |      11.1638   | BIRLESIM_mean_3 |
-| nihai test | c12     | %80      |  1        |  14 |            89.962   |         89.962   |       8.40157  | BIRLESIM_mean_3 |
-| nihai test | c12     | %95      |  1        |  14 |           190.625   |        190.625   |       8.40157  | BIRLESIM_mean_3 |
-| nihai test | c6      | %80      |  1        |  20 |            42.2161  |         42.2161  |       3.72328  | BIRLESIM_mean_3 |
-| nihai test | c6      | %95      |  1        |  20 |            99.5613  |         99.5613  |       3.72328  | BIRLESIM_mean_3 |
-| nihai test | m1      | %80      |  0.92     |  25 |             4.83053 |          5.21011 |       0.581308 | BIRLESIM_mean_3 |
-| nihai test | m1      | %95      |  1        |  25 |            15.462   |         15.462   |       0.581308 | BIRLESIM_mean_3 |
-| nihai test | m10     | %80      |  1        |  16 |             7.02672 |          7.02672 |       0.683291 | BIRLESIM_mean_3 |
-| nihai test | m10     | %95      |  1        |  16 |            16.1397  |         16.1397  |       0.683291 | BIRLESIM_mean_3 |
-| nihai test | m11     | %80      |  1        |  15 |             7.18463 |          7.18463 |       0.685333 | BIRLESIM_mean_3 |
-| nihai test | m11     | %95      |  1        |  15 |            16.3821  |         16.3821  |       0.685333 | BIRLESIM_mean_3 |
-| nihai test | m12     | %80      |  1        |  14 |             7.37886 |          7.37886 |       0.708407 | BIRLESIM_mean_3 |
-| nihai test | m12     | %95      |  1        |  14 |            16.4202  |         16.4202  |       0.708407 | BIRLESIM_mean_3 |
-| nihai test | m2      | %80      |  0.875    |  24 |             5.01113 |          5.66231 |       0.614422 | BIRLESIM_mean_3 |
-| nihai test | m2      | %95      |  1        |  24 |            15.721   |         15.721   |       0.614422 | BIRLESIM_mean_3 |
-| nihai test | m3      | %80      |  0.913043 |  23 |             5.3787  |          5.71449 |       0.649556 | BIRLESIM_mean_3 |
-| nihai test | m3      | %95      |  1        |  23 |            16.1201  |         16.1201  |       0.649556 | BIRLESIM_mean_3 |
-| nihai test | m4      | %80      |  0.954545 |  22 |             4.93229 |          5.16582 |       0.611036 | BIRLESIM_mean_3 |
-| nihai test | m4      | %95      |  1        |  22 |            16.2718  |         16.2718  |       0.611036 | BIRLESIM_mean_3 |
-| nihai test | m5      | %80      |  0.904762 |  21 |             4.7021  |          4.89272 |       0.584788 | BIRLESIM_mean_3 |
-| nihai test | m5      | %95      |  1        |  21 |            16.809   |         16.809   |       0.584788 | BIRLESIM_mean_3 |
-| nihai test | m6      | %80      |  1        |  20 |             5.23339 |          5.23339 |       0.583428 | BIRLESIM_mean_3 |
-| nihai test | m6      | %95      |  1        |  20 |            16.0022  |         16.0022  |       0.583428 | BIRLESIM_mean_3 |
-| nihai test | m7      | %80      |  0.947368 |  19 |             4.96579 |          4.96587 |       0.578899 | BIRLESIM_mean_3 |
-| nihai test | m7      | %95      |  1        |  19 |            16.2964  |         16.2964  |       0.578899 | BIRLESIM_mean_3 |
-| nihai test | m8      | %80      |  1        |  18 |             6.72131 |          6.72131 |       0.670461 | BIRLESIM_mean_3 |
-| nihai test | m8      | %95      |  1        |  18 |            16.1963  |         16.1963  |       0.670461 | BIRLESIM_mean_3 |
-| nihai test | m9      | %80      |  1        |  17 |             6.94232 |          6.94232 |       0.693779 | BIRLESIM_mean_3 |
-| nihai test | m9      | %95      |  1        |  17 |            16.2855  |         16.2855  |       0.693779 | BIRLESIM_mean_3 |
+| nihai test | c12     | %80      |  1        |  15 |            89.962   |         89.962   |       8.38573  | BIRLESIM_mean_3 |
+| nihai test | c12     | %95      |  1        |  15 |           190.625   |        190.625   |       8.38573  | BIRLESIM_mean_3 |
+| nihai test | c6      | %80      |  1        |  21 |            42.2161  |         42.2161  |       3.74824  | BIRLESIM_mean_3 |
+| nihai test | c6      | %95      |  1        |  21 |            99.5613  |         99.5613  |       3.74824  | BIRLESIM_mean_3 |
+| nihai test | m1      | %80      |  0.923077 |  26 |             4.83735 |          5.20234 |       0.587902 | BIRLESIM_mean_3 |
+| nihai test | m1      | %95      |  1        |  26 |            15.462   |         15.462   |       0.587902 | BIRLESIM_mean_3 |
+| nihai test | m10     | %80      |  1        |  17 |             7.02672 |          7.02672 |       0.695967 | BIRLESIM_mean_3 |
+| nihai test | m10     | %95      |  1        |  17 |            16.1397  |         16.1397  |       0.695967 | BIRLESIM_mean_3 |
+| nihai test | m11     | %80      |  1        |  16 |             7.18463 |          7.18463 |       0.695309 | BIRLESIM_mean_3 |
+| nihai test | m11     | %95      |  1        |  16 |            16.3821  |         16.3821  |       0.695309 | BIRLESIM_mean_3 |
+| nihai test | m12     | %80      |  1        |  15 |             7.37886 |          7.37886 |       0.722909 | BIRLESIM_mean_3 |
+| nihai test | m12     | %95      |  1        |  15 |            16.4202  |         16.4202  |       0.722909 | BIRLESIM_mean_3 |
+| nihai test | m2      | %80      |  0.88     |  25 |             5.02338 |          5.64852 |       0.621659 | BIRLESIM_mean_3 |
+| nihai test | m2      | %95      |  1        |  25 |            15.721   |         15.721   |       0.621659 | BIRLESIM_mean_3 |
+| nihai test | m3      | %80      |  0.916667 |  24 |             5.38128 |          5.70307 |       0.656174 | BIRLESIM_mean_3 |
+| nihai test | m3      | %95      |  1        |  24 |            16.1201  |         16.1201  |       0.656174 | BIRLESIM_mean_3 |
+| nihai test | m4      | %80      |  0.956522 |  23 |             4.93576 |          5.15914 |       0.621479 | BIRLESIM_mean_3 |
+| nihai test | m4      | %95      |  1        |  23 |            16.2718  |         16.2718  |       0.621479 | BIRLESIM_mean_3 |
+| nihai test | m5      | %80      |  0.909091 |  22 |             4.72222 |          4.90416 |       0.596616 | BIRLESIM_mean_3 |
+| nihai test | m5      | %95      |  1        |  22 |            16.809   |         16.809   |       0.596616 | BIRLESIM_mean_3 |
+| nihai test | m6      | %80      |  1        |  21 |             5.24144 |          5.24144 |       0.596644 | BIRLESIM_mean_3 |
+| nihai test | m6      | %95      |  1        |  21 |            16.0022  |         16.0022  |       0.596644 | BIRLESIM_mean_3 |
+| nihai test | m7      | %80      |  0.95     |  20 |             4.97753 |          4.97761 |       0.588838 | BIRLESIM_mean_3 |
+| nihai test | m7      | %95      |  1        |  20 |            16.2964  |         16.2964  |       0.588838 | BIRLESIM_mean_3 |
+| nihai test | m8      | %80      |  1        |  19 |             6.72131 |          6.72131 |       0.68659  | BIRLESIM_mean_3 |
+| nihai test | m8      | %95      |  1        |  19 |            16.1963  |         16.1963  |       0.68659  | BIRLESIM_mean_3 |
+| nihai test | m9      | %80      |  1        |  18 |             6.94232 |          6.94232 |       0.707031 | BIRLESIM_mean_3 |
+| nihai test | m9      | %95      |  1        |  18 |            16.2855  |         16.2855  |       0.707031 | BIRLESIM_mean_3 |
 | nihai test | yearend | %80      |  1        |   5 |            25.3739  |         25.3739  |       2.63687  | BIRLESIM_mean_3 |
 | nihai test | yearend | %95      |  1        |   5 |            50.5254  |         50.5254  |       2.63687  | BIRLESIM_mean_3 |
-| nihai test | yoy1    | %80      |  0.96     |  25 |             8.17642 |          8.30002 |       0.867241 | BIRLESIM_mean_3 |
-| nihai test | yoy1    | %95      |  1        |  25 |            23.0303  |         23.0303  |       0.867241 | BIRLESIM_mean_3 |
-| nihai test | yoy10   | %80      |  1        |  16 |            72.9604  |         72.9604  |       6.91838  | BIRLESIM_mean_3 |
-| nihai test | yoy10   | %95      |  1        |  16 |           172.12    |        172.12    |       6.91838  | BIRLESIM_mean_3 |
-| nihai test | yoy11   | %80      |  1        |  15 |            78.22    |         78.22    |       7.58524  | BIRLESIM_mean_3 |
-| nihai test | yoy11   | %95      |  1        |  15 |           185.576   |        185.576   |       7.58524  | BIRLESIM_mean_3 |
-| nihai test | yoy12   | %80      |  1        |  14 |            89.962   |         89.962   |       8.40157  | BIRLESIM_mean_3 |
-| nihai test | yoy12   | %95      |  1        |  14 |           190.625   |        190.625   |       8.40157  | BIRLESIM_mean_3 |
-| nihai test | yoy2    | %80      |  0.916667 |  24 |            14.8867  |         15.4008  |       1.51264  | BIRLESIM_mean_3 |
-| nihai test | yoy2    | %95      |  1        |  24 |            41.6271  |         41.6271  |       1.51264  | BIRLESIM_mean_3 |
-| nihai test | yoy3    | %80      |  0.956522 |  23 |            21.7405  |         22.1779  |       2.16779  | BIRLESIM_mean_3 |
-| nihai test | yoy3    | %95      |  1        |  23 |            53.0551  |         53.0551  |       2.16779  | BIRLESIM_mean_3 |
-| nihai test | yoy4    | %80      |  0.954545 |  22 |            26.7907  |         27.1443  |       2.66204  | BIRLESIM_mean_3 |
-| nihai test | yoy4    | %95      |  1        |  22 |            68.4137  |         68.4137  |       2.66204  | BIRLESIM_mean_3 |
-| nihai test | yoy5    | %80      |  1        |  21 |            35.1611  |         35.1611  |       3.36952  | BIRLESIM_mean_3 |
-| nihai test | yoy5    | %95      |  1        |  21 |            88.0134  |         88.0134  |       3.36952  | BIRLESIM_mean_3 |
-| nihai test | yoy6    | %80      |  1        |  20 |            51.4034  |         51.4034  |       4.45979  | BIRLESIM_mean_3 |
-| nihai test | yoy6    | %95      |  1        |  20 |           114.669   |        114.669   |       4.45979  | BIRLESIM_mean_3 |
-| nihai test | yoy7    | %80      |  1        |  19 |            59.9461  |         59.9461  |       5.23258  | BIRLESIM_mean_3 |
-| nihai test | yoy7    | %95      |  1        |  19 |           126.929   |        126.929   |       5.23258  | BIRLESIM_mean_3 |
-| nihai test | yoy8    | %80      |  1        |  18 |            61.4074  |         61.4074  |       5.68935  | BIRLESIM_mean_3 |
-| nihai test | yoy8    | %95      |  1        |  18 |           145.91    |        145.91    |       5.68935  | BIRLESIM_mean_3 |
-| nihai test | yoy9    | %80      |  1        |  17 |            64.3724  |         64.3724  |       6.24561  | BIRLESIM_mean_3 |
-| nihai test | yoy9    | %95      |  1        |  17 |           164.179   |        164.179   |       6.24561  | BIRLESIM_mean_3 |
+| nihai test | yoy1    | %80      |  0.961538 |  26 |             8.1779  |          8.29675 |       0.875817 | BIRLESIM_mean_3 |
+| nihai test | yoy1    | %95      |  1        |  26 |            23.0303  |         23.0303  |       0.875817 | BIRLESIM_mean_3 |
+| nihai test | yoy10   | %80      |  1        |  17 |            72.9604  |         72.9604  |       6.90878  | BIRLESIM_mean_3 |
+| nihai test | yoy10   | %95      |  1        |  17 |           172.12    |        172.12    |       6.90878  | BIRLESIM_mean_3 |
+| nihai test | yoy11   | %80      |  1        |  16 |            78.22    |         78.22    |       7.51397  | BIRLESIM_mean_3 |
+| nihai test | yoy11   | %95      |  1        |  16 |           185.576   |        185.576   |       7.51397  | BIRLESIM_mean_3 |
+| nihai test | yoy12   | %80      |  1        |  15 |            89.962   |         89.962   |       8.38573  | BIRLESIM_mean_3 |
+| nihai test | yoy12   | %95      |  1        |  15 |           190.625   |        190.625   |       8.38573  | BIRLESIM_mean_3 |
+| nihai test | yoy2    | %80      |  0.92     |  25 |            14.9092  |         15.4027  |       1.5144   | BIRLESIM_mean_3 |
+| nihai test | yoy2    | %95      |  1        |  25 |            41.6271  |         41.6271  |       1.5144   | BIRLESIM_mean_3 |
+| nihai test | yoy3    | %80      |  0.958333 |  24 |            21.7608  |         22.1799  |       2.16273  | BIRLESIM_mean_3 |
+| nihai test | yoy3    | %95      |  1        |  24 |            53.0551  |         53.0551  |       2.16273  | BIRLESIM_mean_3 |
+| nihai test | yoy4    | %80      |  0.956522 |  23 |            26.807   |         27.1452  |       2.65688  | BIRLESIM_mean_3 |
+| nihai test | yoy4    | %95      |  1        |  23 |            68.4137  |         68.4137  |       2.65688  | BIRLESIM_mean_3 |
+| nihai test | yoy5    | %80      |  1        |  22 |            35.1611  |         35.1611  |       3.36861  | BIRLESIM_mean_3 |
+| nihai test | yoy5    | %95      |  1        |  22 |            88.0134  |         88.0134  |       3.36861  | BIRLESIM_mean_3 |
+| nihai test | yoy6    | %80      |  1        |  21 |            51.4034  |         51.4034  |       4.48685  | BIRLESIM_mean_3 |
+| nihai test | yoy6    | %95      |  1        |  21 |           114.669   |        114.669   |       4.48685  | BIRLESIM_mean_3 |
+| nihai test | yoy7    | %80      |  1        |  20 |            59.9461  |         59.9461  |       5.19297  | BIRLESIM_mean_3 |
+| nihai test | yoy7    | %95      |  1        |  20 |           126.929   |        126.929   |       5.19297  | BIRLESIM_mean_3 |
+| nihai test | yoy8    | %80      |  1        |  19 |            61.4074  |         61.4074  |       5.70496  | BIRLESIM_mean_3 |
+| nihai test | yoy8    | %95      |  1        |  19 |           145.91    |        145.91    |       5.70496  | BIRLESIM_mean_3 |
+| nihai test | yoy9    | %80      |  1        |  18 |            64.3724  |         64.3724  |       6.21846  | BIRLESIM_mean_3 |
+| nihai test | yoy9    | %95      |  1        |  18 |           164.179   |        164.179   |       6.21846  | BIRLESIM_mean_3 |
 
 ## Sınırlar
 

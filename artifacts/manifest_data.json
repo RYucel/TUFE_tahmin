@@ -1,6 +1,6 @@
 {
   "asama": "data",
-  "zaman_utc": "2026-10-06T08:38:24.782174+00:00",
+  "zaman_utc": "2026-11-06T06:55:42.840761+00:00",
   "seed": 20260908,
   "config": {
     "project": {
@@ -21,7 +21,7 @@
       "upstream_monthly_url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
       "upstream_items_url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
       "raw_dir": "data/raw",
-      "cutoff": "2026-09",
+      "cutoff": "2026-10",
       "page_limit": 1000,
       "timeout_sec": 60,
       "tolerance": {
@@ -29,12 +29,12 @@
         "material_pp": 0.25
       },
       "expected": {
-        "n_monthly": 595,
+        "n_monthly": 596,
         "first": "1977-03",
-        "last": "2026-09",
-        "last_aylik": 3.3366,
-        "last_ytd": 28.1458,
-        "last_yillik": 35.0184,
+        "last": "2026-10",
+        "last_aylik": 1.0722,
+        "last_ytd": 29.5198,
+        "last_yillik": 34.9932,
         "items_first": "2015-01",
         "items_last": "2026-09",
         "items_n_months": 141
@@ -43,7 +43,7 @@
     "split": {
       "dev_end": "2024-08",
       "holdout_start_origin": "2024-08",
-      "holdout_end": "2026-09",
+      "holdout_end": "2026-10",
       "dev_origin_start": "2015-01",
       "subperiods": [
         {
@@ -160,62 +160,51 @@
     "lightgbm": "4.7.0",
     "matplotlib": "3.11.1",
     "pyarrow": "25.0.1",
-    "torch": "2.14.0",
-    "timesfm": "3.0.1"
+    "torch": null,
+    "timesfm": null
   },
   "donanim": {
-    "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
-    "python": "3.11.15",
+    "platform": "Linux-6.18.44-fc-v242-x86_64-with-glibc2.39",
+    "python": "3.13.18",
     "processor": "x86_64",
     "cpu_count": 4,
     "ram_gb": 16.9,
-    "gpu": "yok (CPU)"
+    "gpu": "bilinmiyor"
   },
-  "tepe_bellek_mb": 601.8,
+  "tepe_bellek_mb": 145.2,
   "determinizm_notu": "Sabit seed kullanılmıştır. LightGBM/BLAS iş parçacığı sayısı ve donanım farklılıkları nedeniyle son basamak düzeyinde tam determinizm garanti edilmez.",
   "veri_kaynaklari": [
     {
       "name": "openapi",
       "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/openapi.json",
-      "status": "blocked",
-      "http_code": null,
-      "fetched_at": "2026-10-06T08:37:56.233574+00:00",
-      "sha256": "",
-      "n_bytes": 0,
-      "cache_path": "",
-      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/openapi.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+      "status": "ok",
+      "http_code": 200,
+      "fetched_at": "2026-11-06T06:55:22.352137+00:00",
+      "sha256": "a1a862fc6db6739cf2486eb8e4278b0e1bbe2d8cc00474e37e3f85e66351d932",
+      "n_bytes": 17567,
+      "cache_path": "/home/user/TUFE_tahmin/data/raw/openapi.json",
+      "detail": ""
     },
     {
       "name": "meta",
       "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/meta",
-      "status": "blocked",
-      "http_code": null,
-      "fetched_at": "2026-10-06T08:37:56.490445+00:00",
-      "sha256": "",
-      "n_bytes": 0,
-      "cache_path": "",
-      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/meta (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+      "status": "ok",
+      "http_code": 200,
+      "fetched_at": "2026-11-06T06:55:22.857163+00:00",
+      "sha256": "4bd7919b7541e787fa496429503a5d80c831ce0292007cf55c0488d1e413b72a",
+      "n_bytes": 2002,
+      "cache_path": "/home/user/TUFE_tahmin/data/raw/meta.json",
+      "detail": ""
     },
     {
       "name": "tufe[offset=0]",
       "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/tufe",
-      "status": "blocked",
-      "http_code": null,
-      "fetched_at": "2026-10-06T08:37:56.779782+00:00",
-      "sha256": "",
-      "n_bytes": 0,
-      "cache_path": "",
-      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/tufe?limit=1000&offset=0&sort=asc (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
-    },
-    {
-      "name": "upstream_monthly",
-      "url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
       "status": "ok",
       "http_code": 200,
-      "fetched_at": "2026-10-06T08:37:57.178161+00:00",
-      "sha256": "ab578568bb02671e97dba2114d7fb13987ed397805691060a8c0d7022d542ec7",
-      "n_bytes": 75042,
-      "cache_path": "/home/user/TUFE_tahmin/data/raw/tufe_upstream.json",
+      "fetched_at": "2026-11-06T06:55:23.334643+00:00",
+      "sha256": "045f30fa4bcd6a6a0dfece7c4a125391df7ad4dd0766d8deb507199379332971",
+      "n_bytes": 77492,
+      "cache_path": "/home/user/TUFE_tahmin/data/raw/tufe_0.json",
       "detail": ""
     },
     {
@@ -223,55 +212,86 @@
       "url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
       "status": "ok",
       "http_code": 200,
-      "fetched_at": "2026-10-06T08:37:57.694550+00:00",
+      "fetched_at": "2026-11-06T06:55:24.174681+00:00",
       "sha256": "4f8338a9032ea1ded1f97d0479b9b15e45c57ee4de99828b3312efb44b34435d",
       "n_bytes": 580271,
       "cache_path": "/home/user/TUFE_tahmin/data/raw/GRETL_TUFE.csv",
       "detail": ""
     }
   ],
-  "api_meta": null,
-  "api_openapi_uc_noktalari": [],
-  "erisilemeyen_kaynaklar": [
-    {
-      "name": "openapi",
-      "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/openapi.json",
-      "status": "blocked",
-      "http_code": null,
-      "fetched_at": "2026-10-06T08:37:56.233574+00:00",
-      "sha256": "",
-      "n_bytes": 0,
-      "cache_path": "",
-      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/openapi.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
-    },
-    {
-      "name": "meta",
-      "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/meta",
-      "status": "blocked",
-      "http_code": null,
-      "fetched_at": "2026-10-06T08:37:56.490445+00:00",
-      "sha256": "",
-      "n_bytes": 0,
-      "cache_path": "",
-      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/meta (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
-    },
-    {
-      "name": "tufe[offset=0]",
-      "url": "https://kktc-tufe-api.stevevaius.workers.dev/api/v1/tufe",
-      "status": "blocked",
-      "http_code": null,
-      "fetched_at": "2026-10-06T08:37:56.779782+00:00",
-      "sha256": "",
-      "n_bytes": 0,
-      "cache_path": "",
-      "detail": "ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/tufe?limit=1000&offset=0&sort=asc (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))"
+  "api_meta": {
+    "success": true,
+    "meta": {
+      "lastChecked": "2026-11-06T00:52:30.686Z",
+      "lastChanged": "2026-11-06T00:52:30.686Z",
+      "latestHeadline": "Tüketici Fiyat Endeksi - Ekim 2026",
+      "latestNewsUrl": "https://istatistik.gov.ct.tr/HABERLER/t252ketici-fiyat-endeksi-ekim-2026",
+      "latestPubDate": "Thu, 05 Nov 2026 11:38:00 GMT",
+      "archiveUrl": "https://istatistik.gov.ct.tr/Portals/39/TUFE_ARSIV_YUZDE_EKIM_2026_WEB.xls",
+      "recordCount": 596,
+      "startPeriod": "1977-03",
+      "endPeriod": "2026-10",
+      "dataSource": "kktc_tufe veri deposu (github.com/RYucel/kktc_tufe)",
+      "latestAvailablePeriod": "2026-10",
+      "officialSource": "KKTC Başbakanlık İstatistik Kurumu",
+      "tufeSourceUrl": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
+      "itemsCsvSourceUrl": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
+      "fallbackRssUrl": "https://istatistik.gov.ct.tr/HABERLER/rss/category/4213/haberler",
+      "updateSchedule": "Kaynak veri deposu her gün 20:00 UTC'de kontrol edilir; aylık TÜFE serisi ayın ilk 10 günü, kurum bülteni yayınlandıktan sonra (14:00 UTC) resmi siteden tazelenir.",
+      "deployedOn": "Cloudflare Edge Network",
+      "license": "MIT - Açık Kaynak",
+      "itemPrices": {
+        "totalItems": 520,
+        "totalMonths": 141,
+        "startPeriod": "2015-01",
+        "endPeriod": "2026-09",
+        "generatedAt": "2026-10-06T07:34:29.607Z",
+        "source": "KKTC Başbakanlık İstatistik Kurumu - Tüketici Fiyatları Endeksi Madde Fiyatları"
+      },
+      "minimumWage": {
+        "changeCount": 79,
+        "startPeriod": "1977-05",
+        "currentSince": "2026-07",
+        "currentAmount": 70893,
+        "currency": "TRY",
+        "seriesEnd": "2026-10",
+        "source": "KKTC Calisma ve Sosyal Guvenlik Bakanligi asgari ucret kararlari",
+        "note": "Brüt asgari ücret. Nominal tutarlar elle güncellenir; reel değerler API'nin TÜFE serisinden hesaplanır."
+      },
+      "dataFreshness": {
+        "status": "pending",
+        "tufeEnd": "2026-10",
+        "itemsEnd": "2026-09",
+        "itemsLagMonths": 1,
+        "note": "Genel TÜFE 2026-10 dönemine geçti, sepet madde fiyatları 2026-09 döneminde. Yeni GRETL_TUFE.csv kaynak depoya yüklendiğinde kapanır: https://github.com/RYucel/kktc_tufe"
+      }
     }
+  },
+  "api_openapi_uc_noktalari": [
+    "/api/v1/calculate",
+    "/api/v1/items",
+    "/api/v1/items/compare",
+    "/api/v1/items/{item}",
+    "/api/v1/latest",
+    "/api/v1/meta",
+    "/api/v1/periods",
+    "/api/v1/prices",
+    "/api/v1/stats",
+    "/api/v1/sync",
+    "/api/v1/tufe",
+    "/api/v1/tufe/{year}",
+    "/api/v1/tufe/{year}/{month}",
+    "/api/v1/wage",
+    "/api/v1/wage/latest",
+    "/api/v1/wage/real",
+    "/health"
   ],
+  "erisilemeyen_kaynaklar": [],
   "timesfm_durumu": {
     "available": false,
-    "detail": "TimesFM 3 kodu yüklendi (import başarılı) ancak ön eğitimli ağırlıklar indirilemedi (google/timesfm-3.0-pytorch): ProxyError: 403 Forbidden. Bu ortamda huggingface.co erişimi engellenmiş görünüyor; TimesFM 3 ÇALIŞTIRILAMAMIŞTIR.",
-    "package_version": "3.0.1",
-    "code_import": "başarılı",
+    "detail": "TimesFM 3 kodu içe aktarılamadı: ModuleNotFoundError: No module named 'timesfm3'. Kurulum: pip install 'timesfm[torch]' veya pip install 'git+https://github.com/google-research/timesfm.git'",
+    "package_version": null,
+    "code_import": "başarısız",
     "weights_ref": "google/timesfm-3.0-pytorch",
     "weights_revision": null,
     "weights_local_path": null,
@@ -294,7 +314,6 @@
   "denetim_ozeti": {
     "GEÇTİ": 15,
     "BİLGİ": 4,
-    "ENGEL": 3,
     "UYARI": 3
   }
 }

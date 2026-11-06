@@ -1,6 +1,6 @@
 {
   "asama": "forecast",
-  "zaman_utc": "2026-10-06T09:00:44.103054+00:00",
+  "zaman_utc": "2026-11-06T07:05:38.148699+00:00",
   "seed": 20260908,
   "config": {
     "project": {
@@ -21,7 +21,7 @@
       "upstream_monthly_url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/docs/data/tufe.json",
       "upstream_items_url": "https://raw.githubusercontent.com/RYucel/kktc_tufe/main/GRETL_TUFE.csv",
       "raw_dir": "data/raw",
-      "cutoff": "2026-09",
+      "cutoff": "2026-10",
       "page_limit": 1000,
       "timeout_sec": 60,
       "tolerance": {
@@ -29,12 +29,12 @@
         "material_pp": 0.25
       },
       "expected": {
-        "n_monthly": 595,
+        "n_monthly": 596,
         "first": "1977-03",
-        "last": "2026-09",
-        "last_aylik": 3.3366,
-        "last_ytd": 28.1458,
-        "last_yillik": 35.0184,
+        "last": "2026-10",
+        "last_aylik": 1.0722,
+        "last_ytd": 29.5198,
+        "last_yillik": 34.9932,
         "items_first": "2015-01",
         "items_last": "2026-09",
         "items_n_months": 141
@@ -43,7 +43,7 @@
     "split": {
       "dev_end": "2024-08",
       "holdout_start_origin": "2024-08",
-      "holdout_end": "2026-09",
+      "holdout_end": "2026-10",
       "dev_origin_start": "2015-01",
       "subperiods": [
         {
@@ -160,20 +160,20 @@
     "lightgbm": "4.7.0",
     "matplotlib": "3.11.1",
     "pyarrow": "25.0.1",
-    "torch": "2.14.0",
-    "timesfm": "3.0.1"
+    "torch": null,
+    "timesfm": null
   },
   "donanim": {
-    "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
-    "python": "3.11.15",
+    "platform": "Linux-6.18.44-fc-v242-x86_64-with-glibc2.39",
+    "python": "3.13.18",
     "processor": "x86_64",
     "cpu_count": 4,
     "ram_gb": 16.9,
-    "gpu": "yok (CPU)"
+    "gpu": "bilinmiyor"
   },
-  "tepe_bellek_mb": 818.7,
+  "tepe_bellek_mb": 373.4,
   "determinizm_notu": "Sabit seed kullanılmıştır. LightGBM/BLAS iş parçacığı sayısı ve donanım farklılıkları nedeniyle son basamak düzeyinde tam determinizm garanti edilmez.",
   "model": "BIRLESIM_mean_3",
-  "veri_kesimi": "2026-09",
-  "tahmin_donemi": "2026-10 – 2027-09"
+  "veri_kesimi": "2026-10",
+  "tahmin_donemi": "2026-11 – 2027-10"
 }

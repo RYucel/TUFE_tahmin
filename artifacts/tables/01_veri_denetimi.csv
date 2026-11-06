@@ -1,21 +1,18 @@
 ﻿kontrol,durum,ayrinti,deger
-Veri kökeni,BİLGİ,API'ye ulaşılamadı; API'nin beslendiği yukarı akış deposu kullanıldı,upstream
-Kaynak erişimi: openapi,ENGEL,"ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/openapi.json (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",https://kktc-tufe-api.stevevaius.workers.dev/api/openapi.json
-Kaynak erişimi: meta,ENGEL,"ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/meta (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",https://kktc-tufe-api.stevevaius.workers.dev/api/v1/meta
-Kaynak erişimi: tufe[offset=0],ENGEL,"ProxyError: HTTPSConnectionPool(host='kktc-tufe-api.stevevaius.workers.dev', port=443): Max retries exceeded with url: /api/v1/tufe?limit=1000&offset=0&sort=asc (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",https://kktc-tufe-api.stevevaius.workers.dev/api/v1/tufe
+Veri kökeni,BİLGİ,Birincil API kullanıldı,api
 Aylar tekil mi,GEÇTİ,0 yinelenen ay,0
 Aylar sıralı mı,GEÇTİ,,
 Ana seri kesintisiz mi,GEÇTİ,Eksik ay yok,0
 Aylık değişimde eksik/sayısal olmayan,GEÇTİ,0 kayıt,0
 Aylık değişim > -%100,GEÇTİ,0 kayıt log dönüşümü için geçersiz,0
-Yıllık oran tutarlılığı,UYARI,"584 kayıt; 452 tanesi yuvarlama toleransı içinde (<= 0.02 pp); 28 tanesi maddi fark (> 0.25 pp); en büyük fark 3.1371 pp @ 2001-06. Farklar düzeltilmedi, olduğu gibi raporlandı.",3.1371
-YTD oran tutarlılığı,UYARI,"585 kayıt; 519 tanesi yuvarlama toleransı içinde (<= 0.02 pp); 1 tanesi maddi fark (> 0.25 pp); en büyük fark 0.2915 pp @ 2001-12. Farklar düzeltilmedi, olduğu gibi raporlandı.",0.2915
-Kayıt sayısı,GEÇTİ,"beklenen 595, bulunan 595",595
+Yıllık oran tutarlılığı,UYARI,"585 kayıt; 453 tanesi yuvarlama toleransı içinde (<= 0.02 pp); 28 tanesi maddi fark (> 0.25 pp); en büyük fark 3.1371 pp @ 2001-06. Farklar düzeltilmedi, olduğu gibi raporlandı.",3.1371
+YTD oran tutarlılığı,UYARI,"586 kayıt; 520 tanesi yuvarlama toleransı içinde (<= 0.02 pp); 1 tanesi maddi fark (> 0.25 pp); en büyük fark 0.2915 pp @ 2001-12. Farklar düzeltilmedi, olduğu gibi raporlandı.",0.2915
+Kayıt sayısı,GEÇTİ,"beklenen 596, bulunan 596",596
 Seri başlangıcı,GEÇTİ,"beklenen 1977-03, bulunan 1977-03",1977-03
-Seri sonu (kesim),GEÇTİ,"beklenen 2026-09, bulunan 2026-09",2026-09
-Son ay aylık %,GEÇTİ,"beklenen 3.3366, bulunan 3.3366",3.3366
-Son ay YTD %,GEÇTİ,"beklenen 28.1458, bulunan 28.1458",28.1458
-Son ay yıllık %,GEÇTİ,"beklenen 35.0184, bulunan 35.0184",35.0184
+Seri sonu (kesim),GEÇTİ,"beklenen 2026-10, bulunan 2026-10",2026-10
+Son ay aylık %,GEÇTİ,"beklenen 1.0722, bulunan 1.0722",1.0722
+Son ay YTD %,GEÇTİ,"beklenen 29.5198, bulunan 29.5198",29.5198
+Son ay yıllık %,GEÇTİ,"beklenen 34.9932, bulunan 34.9932",34.9932
 Sepet kapsamı,BİLGİ,520 kalem × 141 ay (2015-01–2026-09),520x141
 Sepet dönem kontrolü,GEÇTİ,beklenen 2015-01–2026-09 / 141 ay,2015-01–2026-09 / 141
 Sepet eksik değer,GEÇTİ,0 boş hücre (0.000%),0

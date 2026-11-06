@@ -51,3 +51,8 @@ artifacts/*.parquet
 !artifacts/ham_gecmis_tahminler.parquet
 data/raw/*.parquet
 artifacts_dryrun/
+# API yanıt önbellekleri (yalnızca API erişilebildiğinde oluşur)
+data/raw/meta.json
+data/raw/openapi.json
+data/raw/tufe_*.json
+!data/raw/tufe_upstream.json
